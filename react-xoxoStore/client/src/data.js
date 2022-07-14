@@ -20,4 +20,22 @@ export const sliderItems = [
         description: "POPULAR sale description. Buy now!",
         bg: "fbf0f4"
     },
-]
+];
+
+export const categories = [
+    {
+        id: 1,
+        img: "https://www.pngall.com/wp-content/uploads/5/Long-Sleeve-Shirt-PNG.png",
+        title: "Shirt STYLE!",
+    },
+    {
+        id: 2,
+        img: "https://img.pngio.com/pure-cotton-cute-little-bear-pajamas-pure-cotton-lovely-bear-girl-in-pajamas-png-650_785.png",
+        title: "Loungewear LOVE",
+    },
+    {
+        id: 3,
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxtQd32i-dZ5hebMrAB95UIwbZaIOjCuVu5w&usqp=CAU",
+        title: "LIGHT JACKETS",
+    },
+];
