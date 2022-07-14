@@ -85,7 +85,9 @@ const Slider = () => {
     const handleClick = (direction) => {
 		if (direction === 'left') {
 			setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2)
-		} else {
+		} 
+
+		if (direction === 'right') {
 			setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0)
 		}
     };
@@ -96,6 +98,7 @@ const Slider = () => {
       <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowLeftOutlined />
       </Arrow>
+
       <Wrapper slideIndex={slideIndex}>
 		{sliderItems.map(x => (
 			        <Slide bg={x.bg}>
@@ -109,8 +112,8 @@ const Slider = () => {
 					</InfoContainer>
 				  </Slide>
 		))}
-
       </Wrapper>
+	  
       <Arrow direction="right" onClick={() => handleClick("right")}>
         <ArrowRightAltOutlined />
       </Arrow>
