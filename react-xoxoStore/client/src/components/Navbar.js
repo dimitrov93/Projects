@@ -49,13 +49,12 @@ const Right = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
-
 `;
 
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
-  margin: 25px
+  margin: 25px;
 `;
 
 const Navbar = () => {
@@ -66,7 +65,7 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input />
-            <Search style={{color:"gray", fontSize:16}} />
+            <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
         <Center>

@@ -34,7 +34,7 @@ const ContactItem = styled.div`
 `;
 
 const Payment = styled.img`
-    width: 50%;
+  width: 50%;
 `;
 
 const Title = styled.h3`
@@ -78,7 +78,12 @@ const Footer = () => {
       <Left>
         <Logo>Ceko</Logo>
         <Description>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quidem iste necessitatibus laboriosam nihil consequuntur culpa rerum possimus provident magni, molestias, architecto fuga. Voluptate, suscipit libero repellendus dolorum quas sunt tenetur magni ex ipsa inventore reprehenderit ullam aspernatur minus placeat aliquid nesciunt accusantium fuga expedita nostrum, ad ut dicta vitae?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quidem
+          iste necessitatibus laboriosam nihil consequuntur culpa rerum possimus
+          provident magni, molestias, architecto fuga. Voluptate, suscipit
+          libero repellendus dolorum quas sunt tenetur magni ex ipsa inventore
+          reprehenderit ullam aspernatur minus placeat aliquid nesciunt
+          accusantium fuga expedita nostrum, ad ut dicta vitae?
         </Description>
         <SocialContainer>
           <SocialIcon color="3B5998">
@@ -113,13 +118,13 @@ const Footer = () => {
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <Room style={{marginRight: "10px"}} /> Bulgaria, Montana
+          <Room style={{ marginRight: "10px" }} /> Bulgaria, Montana
         </ContactItem>
         <ContactItem>
-          <Phone style={{marginRight: "10px"}} /> +359 884 334 998
+          <Phone style={{ marginRight: "10px" }} /> +359 884 334 998
         </ContactItem>
         <ContactItem>
-          <Mail style={{marginRight: "10px"}} /> ts.dimitrov93@gmail.com
+          <Mail style={{ marginRight: "10px" }} /> ts.dimitrov93@gmail.com
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
