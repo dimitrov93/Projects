@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Search, ShoppingCart } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { mobile } from "../responsive";
+import { Link, NavLink } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
@@ -74,18 +75,37 @@ const Navbar = () => {
           <Language>EN</Language>
           <SearchContainer>
             <Input placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
+            <Search style={{ textDecoration: "none", color: 'inherit' }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>XOXO</Logo>
+          <Logo>
+            <Link to="/" style={{ textDecoration: "none", color: 'inherit' }}>
+              XOXO
+            </Link>
+          </Logo>
         </Center>
         <Right>
-          <MenuItem>Register</MenuItem>
-          <MenuItem>Sign in</MenuItem>
+          <MenuItem>
+            <NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>
+              Catalog
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink to="/register" style={{ textDecoration: "none", color: 'inherit' }}>
+              Register
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink to="/login" style={{ textDecoration: "none", color: 'inherit' }}>
+              Sign in
+            </NavLink>
+          </MenuItem>
           <MenuItem>
             <Badge badgeContent={1} color="primary">
-              <ShoppingCart />
+              <NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}>
+                <ShoppingCart />
+              </NavLink>
             </Badge>
           </MenuItem>
         </Right>
