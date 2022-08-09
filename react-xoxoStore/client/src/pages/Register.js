@@ -3,6 +3,9 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import { useNavigate } from 'react-router-dom';
+import * as authService from "../services/authService";
+
 
 const Container = styled.div`
   width: 100vw;
@@ -56,7 +59,35 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+
 const Register = () => {
+  const navigate = useNavigate();
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const email = formData.get('email');
+        const username = formData.get('userName');
+        const password = formData.get('password');
+        const confirmPassword = formData.get('confirmPassword');
+        console.log(email);
+        console.log(username);
+
+        if (password !== confirmPassword) {
+            return;
+        }
+
+        console.log('tuk');
+
+        authService.register(username, email, password)
+        .then(authData => {
+            // auth.userLogin(authData);
+            console.log(authData);
+            navigate('/');
+        });
+      }
   return (
     <>
       <Navbar />
@@ -64,13 +95,13 @@ const Register = () => {
       <Container>
         <Wrapper>
           <Title>Create an Account</Title>
-          <Form>
-            <Input placeholder="First Name" />
-            <Input placeholder="Last Name" />
-            <Input placeholder="Username" />
-            <Input placeholder="Email" />
-            <Input placeholder="Password" />
-            <Input placeholder="Confirm Password" />
+          <Form onSubmit={onSubmit}>
+            <Input name="firstName" type="firstName" placeholder="First Name" />
+            <Input name="lastName" type="lastName" placeholder="Last Name" />
+            <Input name="userName" type="userName" placeholder="Username" />
+            <Input name="email" type="email" placeholder="Email" />
+            <Input name="password" type="password" placeholder="Password" />
+            <Input name="confirmPassword" type="confirmPassword" placeholder="Confirm Password" />
             <Agreement>
               By creating an account, I consent to the processing of my personal
               data in accordance with the <b>PRIVACY POLICY</b>
