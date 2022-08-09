@@ -98,7 +98,12 @@ const Navbar = () => {
           </MenuItem>
           <MenuItem>
             <NavLink to="/login" style={{ textDecoration: "none", color: 'inherit' }}>
-              Sign in
+              Login
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink to="/logout" style={{ textDecoration: "none", color: 'inherit' }}>
+              Logout
             </NavLink>
           </MenuItem>
           <MenuItem>

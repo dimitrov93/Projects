@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 import { useNavigate } from 'react-router-dom';
 import * as authService from "../services/authService";
+import { withAuth } from "../context/AuthContext";
 
 
 const Container = styled.div`
@@ -60,7 +61,7 @@ const Button = styled.button`
 `;
 
 
-const Register = () => {
+const Register = ({auth}) => {
   const navigate = useNavigate();
 
     const onSubmit = (e) => {
@@ -72,19 +73,14 @@ const Register = () => {
         const username = formData.get('userName');
         const password = formData.get('password');
         const confirmPassword = formData.get('confirmPassword');
-        console.log(email);
-        console.log(username);
-
+        
         if (password !== confirmPassword) {
             return;
         }
 
-        console.log('tuk');
-
         authService.register(username, email, password)
         .then(authData => {
-            // auth.userLogin(authData);
-            console.log(authData);
+            auth.userLogin(authData);
             navigate('/');
         });
       }
@@ -116,4 +112,6 @@ const Register = () => {
   );
 };
 
-export default Register;
+const RegisterWithAuth = withAuth(Register);
+
+export default RegisterWithAuth;

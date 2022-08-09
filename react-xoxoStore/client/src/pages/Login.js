@@ -2,8 +2,13 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import {mobile} from "../responsive";
+import { mobile } from "../responsive";
 
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { AuthContext } from "../context/AuthContext";
+import * as authService from "../services/authService";
 
 const Container = styled.div`
   width: 100vw;
@@ -62,16 +67,37 @@ const Link = styled.a`
 `;
 
 const Login = () => {
+  const { userLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const { email, password } = Object.fromEntries(new FormData(e.target));
+    console.log(email);
+    console.log(password);
+
+    authService
+      .login(email, password)
+      .then((authData) => {
+        userLogin(authData);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/404");
+      });
+  };
   return (
     <>
       <Navbar />
       <Announcement />
       <Container>
         <Wrapper>
-          <Title>Create an Account</Title>
-          <Form>
-            <Input placeholder="Username" />
-            <Input placeholder="Password" />
+          <Title>Login with an Account</Title>
+          <Form onSubmit={onSubmit}>
+            <Input type="email" id="email" name="email" placeholder="Email" />
+            <Input type="password" id="login-password" name="password" placeholder="Password" />
             <Button>Login</Button>
             <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
             <Link>CREATE A NEW ACCOUNT</Link>
