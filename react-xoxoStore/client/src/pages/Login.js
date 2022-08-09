@@ -74,8 +74,6 @@ const Login = () => {
     e.preventDefault();
 
     const { email, password } = Object.fromEntries(new FormData(e.target));
-    console.log(email);
-    console.log(password);
 
     authService
       .login(email, password)

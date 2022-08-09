@@ -13,23 +13,22 @@ import LogginGuard from "./common/logginGuard";
 function App() {
   return (
     <AuthProvider>
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={<ProductList />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route element={<LogginGuard />}>
-        <Route path="/cart" element={<Cart />} />
-        </Route>
-        <Route path="/Product" element={<Product />} />
-        {/* <Route element={<LogginGuard />}> */}
-                <Route path="/logout" element={<Logout />} />
-        {/* </Route> */}
-        
-        <Route path="*" element={<Notfound />} />
-      </Routes>
-    </div>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<ProductList />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route element={<LogginGuard />}></Route>
+          <Route path="/Product" element={<Product />} />
+          <Route element={<LogginGuard />}>
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/logout" element={<Logout />} />
+          </Route>
+
+          <Route path="*" element={<Notfound />} />
+        </Routes>
+      </div>
     </AuthProvider>
   );
 }

@@ -4,6 +4,8 @@ import { Search, ShoppingCart } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
 import { mobile } from "../responsive";
 import { Link, NavLink } from "react-router-dom";
+import { useAuthContext } from '../context/AuthContext';
+
 
 const Container = styled.div`
   height: 60px;
@@ -68,6 +70,8 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const {user} = useAuthContext();
+  console.log(user.username);
   return (
     <Container>
       <Wrapper>
@@ -86,33 +90,21 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          <MenuItem>
-            <NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>
-              Catalog
-            </NavLink>
-          </MenuItem>
-          <MenuItem>
-            <NavLink to="/register" style={{ textDecoration: "none", color: 'inherit' }}>
-              Register
-            </NavLink>
-          </MenuItem>
-          <MenuItem>
-            <NavLink to="/login" style={{ textDecoration: "none", color: 'inherit' }}>
-              Login
-            </NavLink>
-          </MenuItem>
-          <MenuItem>
-            <NavLink to="/logout" style={{ textDecoration: "none", color: 'inherit' }}>
-              Logout
-            </NavLink>
-          </MenuItem>
-          <MenuItem>
-            <Badge badgeContent={1} color="primary">
-              <NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}>
-                <ShoppingCart />
-              </NavLink>
-            </Badge>
-          </MenuItem>
+          {user.username ? <p>Welcome, {user.username}</p> : '' }
+          {user.username 
+          ?  
+          <>
+          <MenuItem><NavLink to="/logout" style={{ textDecoration: "none", color: 'inherit' }}>Logout</NavLink></MenuItem>
+          <MenuItem><Badge badgeContent={1} color="primary"><NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}><ShoppingCart /></NavLink></Badge></MenuItem>
+          </>
+          : 
+          <>
+          <MenuItem><NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
+          <MenuItem><NavLink to="/register" style={{ textDecoration: "none", color: 'inherit' }}>Register</NavLink></MenuItem>
+          <MenuItem><NavLink to="/login" style={{ textDecoration: "none", color: 'inherit' }}>Login</NavLink></MenuItem>
+          </>
+          }
+
         </Right>
       </Wrapper>
     </Container>
