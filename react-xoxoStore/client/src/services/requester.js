@@ -1,18 +1,13 @@
 const request = async (method, url, data) => {
-    console.log('as1');
     try {
-    console.log('as2');
 
         const user = localStorage.getItem('auth');
         const auth = JSON.parse(user || '{}');
-        console.log('as3');
 
         let headers = {}
         if (auth.accessToken) {
             headers['X-Authorization'] = auth.accessToken;
         }
-        console.log('as4');
-
 
         let buildRequest;
 
@@ -28,7 +23,6 @@ const request = async (method, url, data) => {
                 body: JSON.stringify(data)
             });
         }
-        console.log(data);
         const response = await buildRequest;
 
         console.log(response);
