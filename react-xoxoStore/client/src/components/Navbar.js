@@ -94,12 +94,13 @@ const Navbar = () => {
           {user.username 
           ?  
           <>
+          <MenuItem><NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
+          <MenuItem><NavLink to="/create" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
           <MenuItem><NavLink to="/logout" style={{ textDecoration: "none", color: 'inherit' }}>Logout</NavLink></MenuItem>
           <MenuItem><Badge badgeContent={1} color="primary"><NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}><ShoppingCart /></NavLink></Badge></MenuItem>
           </>
           : 
           <>
-          <MenuItem><NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
           <MenuItem><NavLink to="/register" style={{ textDecoration: "none", color: 'inherit' }}>Register</NavLink></MenuItem>
           <MenuItem><NavLink to="/login" style={{ textDecoration: "none", color: 'inherit' }}>Login</NavLink></MenuItem>
           </>
