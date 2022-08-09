@@ -3,8 +3,11 @@ const { PORT } = require('./config/env');
 const { dbInit } = require('./config/initDB');
 const app = express();
 const userRoute = require('./routes/user');
+const authRoute = require('./routes/auth');
+
 
 app.use(express.json())
+app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
 
 
