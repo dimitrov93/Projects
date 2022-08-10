@@ -14,6 +14,7 @@ import Navbar from "./components/Navigation/Navbar";
 import Announcement from "./components/Announcement/Announcement";
 import Footer from "./components/Footer/Footer";
 import NewsLetter from "./components/Home/NewsLetter";
+import Edit from "./components/EditProduct/Edit";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<CatalogList />} />
           <Route path="/catalog/:id" element={<ProductDetails />} />
+          <Route path="/catalog/:id/edit" element={<Edit />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route element={<LogginGuard />}></Route>

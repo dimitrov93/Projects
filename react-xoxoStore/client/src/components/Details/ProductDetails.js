@@ -2,7 +2,7 @@ import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import * as productService from "../../services/productService";
 
 const Container = styled.div``;
@@ -147,6 +147,10 @@ const ProductDetails = () => {
     }
   };
 
+  const productEditHandler = () => {
+
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -182,7 +186,9 @@ const ProductDetails = () => {
               <Add />
             </AmountContainer>
             <Button>ADD TO CART</Button>
-            <Button>Edit</Button>
+            <Link to={`/catalog/${productId.id}/edit`}>
+              <Button onClick={productEditHandler}>Edit</Button>
+            </Link>
             <Button onClick={productDeleteHandler}>Delete</Button>
           </AddContainer>
         </InfoContainer>

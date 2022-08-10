@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { mobile } from "../../responsive";
 
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
@@ -56,7 +56,7 @@ const Button = styled.button`
   margin-bottom: 10px;
 `;
 
-const Link = styled.a`
+const LinkToRegister = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
@@ -92,8 +92,9 @@ const Login = () => {
             <Input type="email" id="email" name="email" placeholder="Email" />
             <Input type="password" id="login-password" name="password" placeholder="Password" />
             <Button>Login</Button>
-            <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-            <Link>CREATE A NEW ACCOUNT</Link>
+            <Link to='/register'>
+            <LinkToRegister>CREATE A NEW ACCOUNT</LinkToRegister>
+            </Link>
           </Form>
         </Wrapper>
       </Container>

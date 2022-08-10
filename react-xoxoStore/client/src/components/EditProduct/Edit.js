@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 import * as productService from "../../services/productService";
+
 
 const Container = styled.div`
   width: 100vw;
@@ -60,22 +62,28 @@ const Select = styled.select`
   padding: 10px;
 `;
 
-const Create = () => {
-  // const { productAdd } = useContext(ProductContext);
+const Edit = () => {
+  const [currentProduct, setCurrentProduct] = useState({});
+  const  product  = useParams();
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    productService.getOne(product.id)
+        .then(oldProduct => {
+          setCurrentProduct(oldProduct);
+        })
+}, [])
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const gameData = Object.fromEntries(new FormData(e.target));
-    console.log(gameData);
-    productService.create(gameData).then((result) => {
-
-    });
+        productService.edit(product.id, gameData)
+            .then((result) => {
+              navigate(`/catalog/${product.id}`)
+    });   
   };
-
-  function refreshPage() {
-    window.location.reload(false);
-  }
 
   return (
     <>
@@ -83,15 +91,11 @@ const Create = () => {
         <Wrapper>
           <Title>New Product</Title>
           <Form onSubmit={onSubmit}>
-            <Input name="title" type="text" placeholder="Title" />
-            <Input
-              name="description"
-              type="text"
-              placeholder="Description..."
-            />
-            <Input name="img" type="text" placeholder="Image..." />
-            <Input name="price" type="number" placeholder="Price" />
-            <Input name="categories" type="text" placeholder="Category" />
+            <Input name="title" type="text" placeholder="Title" defaultValue={currentProduct.title} />
+            <Input name="description" type="text" placeholder="Description..." defaultValue={currentProduct.description}  />
+            <Input name="img" type="text" placeholder="Image..." defaultValue={currentProduct.img}  />
+            <Input name="price" type="number" placeholder="Price" defaultValue={currentProduct.price}  />
+            <Input name="categories" type="text" placeholder="Category" defaultValue={currentProduct.categories}  />
             <Select name="inStock">
               <option value="" hidden>
                 Stock
@@ -99,7 +103,7 @@ const Create = () => {
               <option value="true">Yes</option>
               <option value="false">No</option>
             </Select>
-            <Button onClick={refreshPage}>CREATE</Button>
+            <Button>UPDATE</Button>
           </Form>
         </Wrapper>
       </Container>
@@ -107,4 +111,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default Edit;
