@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Product from "./Product";
 import {useEffect, useState } from "react";
-import * as productService from "../services/productService";
+import * as productService from "../../services/productService";
 
 const Container = styled.div`
   padding: 20px;

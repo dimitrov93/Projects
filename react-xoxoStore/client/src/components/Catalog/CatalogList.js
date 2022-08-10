@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Products from "../components/Products";
-import {mobile} from "../responsive";
+import Products from "../Catalog/Products";
+import {mobile} from "../../responsive";
 
 const Container = styled.div``;
 
@@ -30,7 +30,7 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const ProductList = () => {
+const CatalogList = () => {
 
 
 
@@ -79,4 +79,4 @@ const ProductList = () => {
   );
 };
 
-export default ProductList;
+export default CatalogList;

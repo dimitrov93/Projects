@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { Search, ShoppingCart } from "@material-ui/icons";
 import { Badge } from "@material-ui/core";
-import { mobile } from "../responsive";
+import { mobile } from "../../responsive";
 import { Link, NavLink } from "react-router-dom";
-import { useAuthContext } from '../context/AuthContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 
 const Container = styled.div`

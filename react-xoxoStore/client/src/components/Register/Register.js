@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile } from "../../responsive";
 import { useNavigate } from 'react-router-dom';
-import * as authService from "../services/authService";
-import { withAuth } from "../context/AuthContext";
+import * as authService from "../../services/authService";
+import { withAuth } from "../../context/AuthContext";
 
 
 const Container = styled.div`

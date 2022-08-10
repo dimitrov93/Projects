@@ -1,19 +1,19 @@
-import Product from "./pages/Product";
-import Home from "./pages/Home";
-import ProductList from "./pages/ProductList";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Cart from "./pages/Cart";
-import Logout from "./pages/Logout";
+import ProductDetails from "./components/Details/ProductDetails";
+import Home from "./components/Home/Home";
+import CatalogList from "./components/Catalog/CatalogList";
+import Register from "./components/Register/Register";
+import Login from "./components/Login/Login";
+import Cart from "./components/Cart/Cart";
+import Logout from "./components/Logout/Logout";
 import { Routes, Route } from "react-router-dom";
-import Notfound from "./pages/Notfound";
+import Notfound from "./components/common/Notfound";
 import { AuthProvider } from "./context/AuthContext";
-import LogginGuard from "./common/logginGuard";
-import Create from "./pages/Create";
-import Navbar from "./components/Navbar";
-import Announcement from "./components/Announcement";
-import Footer from "./components/Footer";
-import NewsLetter from "./components/NewsLetter";
+import LogginGuard from "./components/common/logginGuard";
+import Create from "./components/CreateProduct/Create";
+import Navbar from "./components/Navigation/Navbar";
+import Announcement from "./components/Announcement/Announcement";
+import Footer from "./components/Footer/Footer";
+import NewsLetter from "./components/Home/NewsLetter";
 
 function App() {
   return (
@@ -23,8 +23,8 @@ function App() {
         <Announcement />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<ProductList />} />
-          <Route path="/catalog/:id" element={<Product />} />
+          <Route path="/catalog" element={<CatalogList />} />
+          <Route path="/catalog/:id" element={<ProductDetails />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route element={<LogginGuard />}></Route>

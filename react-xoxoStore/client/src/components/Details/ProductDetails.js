@@ -1,9 +1,9 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile } from "../../responsive";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import * as productService from "../services/productService";
+import * as productService from "../../services/productService";
 
 const Container = styled.div``;
 
@@ -113,7 +113,7 @@ const Button = styled.button`
   }
 `;
 
-const Product = () => {
+const ProductDetails = () => {
   const navigate = useNavigate();
   const productId = useParams();
 
@@ -191,4 +191,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetails;

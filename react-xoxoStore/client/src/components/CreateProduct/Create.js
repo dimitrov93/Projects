@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { mobile } from "../responsive";
-import * as productService from "../services/productService"
+import { mobile } from "../../responsive";
+import * as productService from "../../services/productService"
 
 const Container = styled.div`
   width: 100vw;
