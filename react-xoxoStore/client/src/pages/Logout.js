@@ -1,26 +1,27 @@
-import { useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from '../context/AuthContext';
-import * as authService from '../services/authService';
+import { AuthContext } from "../context/AuthContext";
+import * as authService from "../services/authService";
 
 const Logout = () => {
-    const navigate = useNavigate();
-    const { user, userLogout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { user, userLogout } = useContext(AuthContext);
 
-    console.log('tuk');
-    useEffect(() => {
-        authService.logout(user.accessToken)
-            .then(() => {
-                userLogout();
-                navigate('/');
-            })
-            .catch(() => {
-                navigate('/');
-            });
-    });
+  useEffect(() => {
+    authService
+      .logout(user.accessToken)
+      .then(() => {
+        userLogout();
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/");
+      });
+  });
 
-    return null;
-}
+  return null;
+};
 
 export default Logout;

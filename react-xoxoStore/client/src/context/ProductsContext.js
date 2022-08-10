@@ -1,29 +1,50 @@
 import { createContext, useReducer, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-
 import * as productService from '../services/productService';
 
-const ProductContext = createContext();
+export const ProductContext = createContext();
 
+const productReducer = (state, action) => {
+    switch (action.type) {
+        case 'ADD_PRODUCTS':
+            return action.payload.map(x => ({ ...x}));
+        case 'ADD_PRODUCT':
+            return [...state, action.payload];
+        default:
+            return state;
+    }
+};
 
-export const ProductProvider = ({children}) => {
+export const GameProvider = ({
+    children,
+}) => {
     const navigate = useNavigate();
-    const [products, setProducts] = useState([])
+    const [product, dispatch] = useReducer(productReducer, []);
 
     useEffect(() => {
         productService.getAll()
             .then(result => {
-                setProducts(result)
-                console.log(result)
-                // dispatch(action);
+                const action = {
+                    type: 'ADD_PRODUCTS',
+                    payload: result
+                };
+
+                dispatch(action);
             });
     }, []);
 
 
+    const productAdd = (productData) => {
+        dispatch({
+            type: 'ADD_PRODUCT',
+            payload: productData,
+        })
+
+        navigate('/catalog');
+    };
+
     return (
-        <ProductContext.Provider value={{
-            products
-        }}>
+        <ProductContext.Provider value={{productAdd}}>
             {children}
         </ProductContext.Provider>
     );

@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
 
 import { useContext } from "react";
@@ -88,8 +85,6 @@ const Login = () => {
   };
   return (
     <>
-      <Navbar />
-      <Announcement />
       <Container>
         <Wrapper>
           <Title>Login with an Account</Title>
@@ -102,8 +97,6 @@ const Login = () => {
           </Form>
         </Wrapper>
       </Container>
-
-      <Footer />
     </>
   );
 };

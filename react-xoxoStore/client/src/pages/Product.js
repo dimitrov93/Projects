@@ -1,17 +1,16 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Newsletter from "../components/NewsLetter";
-import {mobile} from "../responsive";
+import { mobile } from "../responsive";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import * as productService from "../services/productService";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -109,30 +108,55 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
-  &:hover{
-      background-color: #f8f4f4;
+  &:hover {
+    background-color: #f8f4f4;
   }
 `;
 
 const Product = () => {
+  const navigate = useNavigate();
+  const productId = useParams();
+
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    productService
+      .getOne(productId.id)
+      .then((res) => {
+        setProduct(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const productDeleteHandler = () => {
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this item?"
+    );
+
+    if (confirmation) {
+      productService
+        .remove(productId.id)
+        .then(() => {
+          navigate("/catalog");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
   return (
     <Container>
-      <Navbar />
-      <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={product.img} />
         </ImgContainer>
         <InfoContainer>
           <Title>Denim Jumpsuit</Title>
-          <Desc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-            tristique tortor pretium ut. Curabitur elit justo, consequat id
-            condimentum ac, volutpat ornare.
-          </Desc>
-          <Price>$ 20</Price>
+          <Desc>{product.description}</Desc>
+          <Price>$ {product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
@@ -158,11 +182,11 @@ const Product = () => {
               <Add />
             </AmountContainer>
             <Button>ADD TO CART</Button>
+            <Button>Edit</Button>
+            <Button onClick={productDeleteHandler}>Delete</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
-      <Newsletter />
-      <Footer />
     </Container>
   );
 };

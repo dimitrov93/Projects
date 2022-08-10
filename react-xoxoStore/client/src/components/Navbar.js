@@ -71,7 +71,6 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const {user} = useAuthContext();
-  console.log(user.username);
   return (
     <Container>
       <Wrapper>
@@ -95,7 +94,7 @@ const Navbar = () => {
           ?  
           <>
           <MenuItem><NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
-          <MenuItem><NavLink to="/create" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
+          <MenuItem><NavLink to="/create" style={{ textDecoration: "none", color: 'inherit' }}>Create</NavLink></MenuItem>
           <MenuItem><NavLink to="/logout" style={{ textDecoration: "none", color: 'inherit' }}>Logout</NavLink></MenuItem>
           <MenuItem><Badge badgeContent={1} color="primary"><NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}><ShoppingCart /></NavLink></Badge></MenuItem>
           </>

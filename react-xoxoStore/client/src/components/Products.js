@@ -1,10 +1,7 @@
-import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
-import {ProductProvider} from '../context/ProductsContext';
-import * as productService from '../services/productService';
-
+import {useEffect, useState } from "react";
+import * as productService from "../services/productService";
 
 const Container = styled.div`
   padding: 20px;
@@ -13,23 +10,22 @@ const Container = styled.div`
 `;
 
 const Products = () => {
-  // const {products} = useContext(ProductProvider)
-  // console.log(products);
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-      productService.getAll()
-          .then(result => {
-              setProducts(result)
-              console.log(result)
-              // dispatch(action);
-          });
+    productService.getAll().then((result) => {
+      setProducts(result);
+      // dispatch(action);
+    });
   }, []);
+
   return (
     <Container>
-      {products.map((x) => (
-        <Product key={x._id} item={x} />
-      ))}
+      {products.length > 0 ? (
+        products.map((x) => <Product key={x._id} item={x} />)
+      ) : (
+        <h1>There are no products yet!</h1>
+      )}
     </Container>
   );
 };
