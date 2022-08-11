@@ -4,6 +4,7 @@ import { mobile } from "../../responsive";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import * as productService from "../../services/productService";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Container = styled.div``;
 
@@ -116,8 +117,9 @@ const Button = styled.button`
 const ProductDetails = () => {
   const navigate = useNavigate();
   const productId = useParams();
-
   const [product, setProduct] = useState([]);
+  const { user } = useAuthContext();
+  const [productsAmount, setProductsAmount] = useState(2);
 
   useEffect(() => {
     productService
@@ -129,6 +131,8 @@ const ProductDetails = () => {
         console.log(err);
       });
   }, []);
+
+  let isOwner = product.owner === user._id;
 
   const productDeleteHandler = () => {
     const confirmation = window.confirm(
@@ -147,8 +151,13 @@ const ProductDetails = () => {
     }
   };
 
-  const productEditHandler = () => {
+  const increaseAmountHandler = (handler) => {
 
+    if (handler == true) {
+      setProductsAmount(oldState => oldState + 1)
+    } else {
+      setProductsAmount(oldState => oldState - 1)
+    }
   }
 
   return (
@@ -181,15 +190,19 @@ const ProductDetails = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => increaseAmountHandler(false)} />
+              <Amount>{productsAmount}</Amount>
+              <Add onClick={() => increaseAmountHandler(true)} />
             </AmountContainer>
             <Button>ADD TO CART</Button>
-            <Link to={`/catalog/${productId.id}/edit`}>
-              <Button onClick={productEditHandler}>Edit</Button>
-            </Link>
-            <Button onClick={productDeleteHandler}>Delete</Button>
+            {isOwner && (
+              <>
+                <Link to={`/catalog/${productId.id}/edit`}>
+                  <Button>Edit</Button>
+                </Link>
+                <Button onClick={productDeleteHandler}>Delete</Button>
+              </>
+            )}
           </AddContainer>
         </InfoContainer>
       </Wrapper>

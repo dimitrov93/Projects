@@ -15,6 +15,7 @@ import Announcement from "./components/Announcement/Announcement";
 import Footer from "./components/Footer/Footer";
 import NewsLetter from "./components/Home/NewsLetter";
 import Edit from "./components/EditProduct/Edit";
+import Profile from "./components/Profile/Profile";
 
 function App() {
   return (
@@ -24,7 +25,11 @@ function App() {
         <Announcement />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<CatalogList />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/catalog" element={<CatalogList all='all' />} />
+          <Route path="/catalog/woman" element={<CatalogList women='women' />} />
+          <Route path="/catalog/men" element={<CatalogList men='men' />} />
+          <Route path="/catalog/kids" element={<CatalogList kids='kids' />} />
           <Route path="/catalog/:id" element={<ProductDetails />} />
           <Route path="/catalog/:id/edit" element={<Edit />} />
           <Route path="/register" element={<Register />} />

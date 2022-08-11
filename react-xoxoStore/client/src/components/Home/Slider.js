@@ -1,5 +1,6 @@
 import { ArrowLeftOutlined, ArrowRightAltOutlined } from "@material-ui/icons";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { sliderItems } from "../../data";
 import { mobile } from "../../responsive";
@@ -107,7 +108,9 @@ const Slider = () => {
             <InfoContainer>
               <Title>{x.title}</Title>
               <Description>{x.description}</Description>
+              <Link to={`/catalog/${x.category}/`}>
               <Button>Shop Now</Button>
+              </Link>
             </InfoContainer>
           </Slide>
         ))}

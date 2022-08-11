@@ -89,7 +89,7 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          {user.username ? <p>Welcome, {user.username}</p> : '' }
+          {user.username ?    <p>Welcome, <Link to={`/profile`}> {user.username} </Link></p>  : '' }
           {user.username 
           ?  
           <>

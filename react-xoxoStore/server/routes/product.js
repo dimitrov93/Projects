@@ -26,7 +26,8 @@ router.get("/", async (req, res) => {
 // Create
 router.post("/", async (req, res) => {
     const newProduct = new Product(req.body);
-  
+
+    console.log(req.user);
     try {
       const savedProduct = await newProduct.save();
       res.status(200).json(savedProduct);

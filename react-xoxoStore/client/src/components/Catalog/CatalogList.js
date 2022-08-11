@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Products from "../Catalog/Products";
 import {mobile} from "../../responsive";
+import ProductsWomen from "./ProductsWomen";
+import ProductsMen from "./ProductsMen";
+import ProductsKids from "./ProductsKids";
 
 const Container = styled.div``;
 
@@ -30,9 +33,7 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const CatalogList = () => {
-
-
+const CatalogList = ({all, women, men, kids}) => {
 
   return (
     <Container>
@@ -41,7 +42,7 @@ const CatalogList = () => {
         <Filter>
           <FilterText>FIlter Products</FilterText>
           <Select>
-            <Option disabled selected>
+            <Option disabled>
               Color
             </Option>
             <Option>White</Option>
@@ -52,7 +53,7 @@ const CatalogList = () => {
             <Option>Green</Option>
           </Select>
           <Select>
-            <Option disabled selected>
+            <Option disabled>
               Size
             </Option>
             <Option>XS</Option>
@@ -72,7 +73,10 @@ const CatalogList = () => {
         </Filter>
       </FilterContainer>
 
-      <Products />
+      {all && <Products />}
+      {women && <ProductsWomen />}
+      {men && <ProductsMen />}
+      {kids && <ProductsKids />}
 
 
     </Container>

@@ -2,23 +2,26 @@ export const sliderItems = [
     {
         id: 1,
         img: "https://purepng.com/public/uploads/large/purepng.com-women-shoppingwomenpeoplepersonsfemaleshopping-1121525085594exo2y.png",
-        title: "SUMMER SALE",
+        title: "SUMMER SALE WOMEN",
         description: "Summer sale description. Buy now!",
-        bg: "f5fafd"
+        bg: "f5fafd",
+        category: 'woman'
     },
     {
         id: 2,
-        img: "https://img.cppng.com/download/2020-06/7-2-shopping-png-hd.png",
-        title: "WINTER SALE",
+        img: "https://blogger.googleusercontent.com/img/a/AVvXsEhG-cVEUZ4ORC5IhgIFdftyyuPwjickUZDd96kUgfTbbkoSWGwzNRBorU1CAtId8_Fh_wByUYuixGPhV6kp1OYZzMJwW4cfmef-dfQYd4rF6bauFYYTPGKruHulh_rU6afuViGwwqHh5lySWi9Dv1QLSiu6cU0o1KJm9hbPZsvISwVlxSwyRQHFZm8VZA=s480",
+        title: "SUMMER SALE MEN",
         description: "WINTER sale description. Buy now!",
-        bg: "fcf1ed"
+        bg: "fcf1ed",
+        category: 'men'
     },
     {
         id: 3,
-        img: "https://www.pngmart.com/files/15/Retail-Girl-Holding-Shopping-Bag-PNG.png",
-        title: "POPULAR SALE",
+        img: "https://www.seekpng.com/png/detail/245-2450823_childrens-clothing.png",
+        title: "SUMMER SALE KIDS",
         description: "POPULAR sale description. Buy now!",
-        bg: "fbf0f4"
+        bg: "f7f7f7",
+        category: 'kids'
     },
 ];
 

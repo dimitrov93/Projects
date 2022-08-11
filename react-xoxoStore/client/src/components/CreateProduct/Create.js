@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 import * as productService from "../../services/productService";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Container = styled.div`
   width: 100vw;
@@ -62,14 +63,16 @@ const Select = styled.select`
 
 const Create = () => {
   // const { productAdd } = useContext(ProductContext);
+  const { user } = useAuthContext();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const gameData = Object.fromEntries(new FormData(e.target));
-    console.log(gameData);
-    productService.create(gameData).then((result) => {
-
+    const productData = Object.fromEntries(new FormData(e.target));
+    productData['owner'] = user._id
+    productService.create(productData)
+      .then((result) => {
+        console.log(result);
     });
   };
 
@@ -91,7 +94,14 @@ const Create = () => {
             />
             <Input name="img" type="text" placeholder="Image..." />
             <Input name="price" type="number" placeholder="Price" />
-            <Input name="categories" type="text" placeholder="Category" />
+            <Select name="categories">
+              <option value="" hidden>
+              Category
+              </option>
+              <option value="women">Women</option>
+              <option value="men">Men</option>
+              <option value="kids">Kids</option>
+            </Select>
             <Select name="inStock">
               <option value="" hidden>
                 Stock
