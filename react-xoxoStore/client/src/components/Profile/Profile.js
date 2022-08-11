@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from "styled-components";
+import { useAuthContext } from "../../context/AuthContext";
+
+
 const Section = styled.section`
 
 `
@@ -34,21 +37,20 @@ const flexDiv = styled.div`
 
 
 const Profile = () => {
-  return (
+    const { user } = useAuthContext();
+
+    return (
     <Section>
         <Profil >
             <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKW7D6lGORGITe7TYh0coX0095pzvy3qVM353MdqwmZA&s' alt='error'></Image>
             <Title>User info: </Title>
             <flexDiv>
-                <p>Username: </p>
-                <p>Username: </p>
+                <p>Username: {user.username} </p>
             </flexDiv>
             <flexDiv>
-                <p>Email: </p>
-                <p>Email: </p>
+                <p>Email: {user.email} </p>
             </flexDiv>
             <flexDiv>
-                <p>Purchases: </p>
                 <p>Purchases: </p>
             </flexDiv>
         </Profil>
