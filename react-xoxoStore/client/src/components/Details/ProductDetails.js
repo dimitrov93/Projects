@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import * as productService from "../../services/productService";
 import { useAuthContext } from "../../context/AuthContext";
+import { addProduct } from "../../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 
@@ -117,9 +119,12 @@ const Button = styled.button`
 const ProductDetails = () => {
   const navigate = useNavigate();
   const productId = useParams();
-  const [product, setProduct] = useState([]);
   const { user } = useAuthContext();
-  const [productsAmount, setProductsAmount] = useState(2);
+  const dispatch = useDispatch()
+  const [product, setProduct] = useState([]);
+  const [productsAmount, setProductsAmount] = useState(1);
+  const [color, setColor] = useState('');
+  const [size, setSize] = useState("");
 
   useEffect(() => {
     productService
@@ -150,14 +155,17 @@ const ProductDetails = () => {
         });
     }
   };
-
   const increaseAmountHandler = (handler) => {
-
     if (handler == true) {
-      setProductsAmount(oldState => oldState + 1)
+      setProductsAmount((oldState) => oldState + 1);
     } else {
-      setProductsAmount(oldState => oldState - 1)
+      setProductsAmount((oldState) => oldState - 1);
     }
+  };
+
+  const addToCartHandler = () => {
+    //update cart
+    dispatch(addProduct({...product,productsAmount, color, size}))
   }
 
   return (
@@ -172,19 +180,12 @@ const ProductDetails = () => {
           <Price>$ {product.price}</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+                <FilterColor color={product.color} onClick={(e) => setColor(product.color)} />
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterSize onClick={(e) => setSize(e.target.value)}>
+                <FilterSizeOption key={product.size}>{product.size}</FilterSizeOption>
               </FilterSize>
             </Filter>
           </FilterContainer>
@@ -194,7 +195,7 @@ const ProductDetails = () => {
               <Amount>{productsAmount}</Amount>
               <Add onClick={() => increaseAmountHandler(true)} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={addToCartHandler}>ADD TO CART</Button>
             {isOwner && (
               <>
                 <Link to={`/catalog/${productId.id}/edit`}>

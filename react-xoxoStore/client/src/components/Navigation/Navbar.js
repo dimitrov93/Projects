@@ -5,6 +5,7 @@ import { Badge } from "@material-ui/core";
 import { mobile } from "../../responsive";
 import { Link, NavLink } from "react-router-dom";
 import { useAuthContext } from '../../context/AuthContext';
+import {useSelector} from 'react-redux'
 
 
 const Container = styled.div`
@@ -70,6 +71,8 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector(state => state.cart.quantity);
+  console.log(quantity);
   const {user} = useAuthContext();
   return (
     <Container>
@@ -96,7 +99,7 @@ const Navbar = () => {
           <MenuItem><NavLink to="/catalog" style={{ textDecoration: "none", color: 'inherit' }}>Catalog</NavLink></MenuItem>
           <MenuItem><NavLink to="/create" style={{ textDecoration: "none", color: 'inherit' }}>Create</NavLink></MenuItem>
           <MenuItem><NavLink to="/logout" style={{ textDecoration: "none", color: 'inherit' }}>Logout</NavLink></MenuItem>
-          <MenuItem><Badge badgeContent={1} color="primary"><NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}><ShoppingCart /></NavLink></Badge></MenuItem>
+          <MenuItem><Badge badgeContent={quantity} color="primary"><NavLink to="/cart" style={{ textDecoration: "none", color: 'inherit' }}><ShoppingCart /></NavLink></Badge></MenuItem>
           </>
           : 
           <>

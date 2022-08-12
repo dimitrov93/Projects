@@ -36,8 +36,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route element={<LogginGuard />}></Route>
           <Route path="/create" element={<Create />} />
-          <Route element={<LogginGuard />}>
             <Route path="/cart" element={<Cart />} />
+          <Route element={<LogginGuard />}>
           </Route>
             <Route path="/logout" element={<Logout />} />
 

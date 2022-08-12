@@ -109,6 +109,8 @@ const Create = () => {
               <option value="true">Yes</option>
               <option value="false">No</option>
             </Select>
+            <Input name="color" type="text" placeholder="Color..." />
+            <Input name="size" type="text" placeholder="Size" />
             <Button onClick={refreshPage}>CREATE</Button>
           </Form>
         </Wrapper>
