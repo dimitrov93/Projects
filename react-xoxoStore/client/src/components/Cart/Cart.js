@@ -158,7 +158,6 @@ const Button = styled.button`
 const Cart = () => {
   const { user } = useAuthContext();
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
   return (
     <Container>
       <Wrapper>
@@ -175,6 +174,7 @@ const Cart = () => {
         <Info>
             {cart.products.map((product) => (
               <Product>
+
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -203,6 +203,7 @@ const Cart = () => {
               </Product>
             ))}
             <Hr />
+            {cart.products.length <= 0 && <h1>No products yet</h1>}
           </Info>
           <Summary>
           <SummaryTitle>ORDER SUMMARY</SummaryTitle>

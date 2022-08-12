@@ -9,23 +9,54 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const Products = () => {
+const Products = ({cat,filters,sort}) => {
   const [products, setProducts] = useState([]);
-
+  
+  
   useEffect(() => {
-    productService.getAll().then((result) => {
-      setProducts(result);
-      // dispatch(action);
-    });
+    try {
+      productService.getAll()
+        .then((result) => {
+          setProducts(result);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
+
+  let filtered;
+
+  if (filters?.color && filters?.size) {
+    filtered = products.filter((x) => x.color === filters?.color)
+      .filter((x) => x.size === filters?.size )
+  }
+
+  if (filters?.color) {
+    filtered = products?.filter((x) => {
+      return x.color === filters?.color
+    });
+  }
+
+  if (filters?.size) {
+    filtered = products.filter((x) => {
+      return x.size === filters?.size
+    })
+  }
+
+
 
   return (
     <Container>
-      {products.length > 0 ? (
-        products.map((x) => <Product key={x._id} item={x} />)
-      ) : (
+      {filtered 
+      ? filtered.map((x) => <Product key={x._id} item={x} />)
+      : products.map((x) => <Product key={x._id} item={x} />)
+      }
+
+      {products.length <= 0  ? 
         <h1>There are no products yet!</h1>
-      )}
+        : ''
+      }
+ 
     </Container>
   );
 };

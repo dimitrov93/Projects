@@ -26,12 +26,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/catalog" element={<CatalogList all='all' />} />
+          <Route path="/catalog/" element={<CatalogList all='all' />} />
           <Route path="/catalog/woman" element={<CatalogList women='women' />} />
           <Route path="/catalog/men" element={<CatalogList men='men' />} />
           <Route path="/catalog/kids" element={<CatalogList kids='kids' />} />
           <Route path="/catalog/:id" element={<ProductDetails />} />
           <Route path="/catalog/:id/edit" element={<Edit />} />
+          <Route path="/catalog/:category" element={<CatalogList all='all' />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route element={<LogginGuard />}></Route>

@@ -30,10 +30,8 @@ router.post('/login', async (req,res) => {
     
         console.log(token);
         res.cookie(COOKIE_SESSION_NAME, token, {httpOnly: true});
-        // res.redirect('/')
         res.status(200).json(user)
     } catch (error) {
-        // res.render('auth/login', {title: 'Login Page', error: getErrorMsg(error)})
         res.status(500).json(error)
 
     }
