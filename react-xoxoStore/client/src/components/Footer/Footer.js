@@ -9,7 +9,7 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
-
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -94,7 +94,9 @@ const Footer = () => {
         </Description>
         <SocialContainer>
           <SocialIcon color="3B5998">
+          <Link to={'/'} style={{ textDecoration: 'none',color: "inherit" }} >
             <Facebook />
+            </Link>
           </SocialIcon>
           <SocialIcon color="125688">
             <Instagram />
@@ -110,16 +112,14 @@ const Footer = () => {
       <Center>
         <Title>Usefull links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+
+          <ListItem><Link to={'/'} style={{ textDecoration: 'none',color: "inherit" }} >Home </Link></ListItem> 
+          <ListItem><Link to={'/cart'} style={{ textDecoration: 'none',color: "inherit" }} >Cart </Link></ListItem> 
+          <ListItem><Link to={'/catalog/men'} style={{ textDecoration: 'none',color: "inherit" }} >Man Fashion </Link></ListItem> 
+          <ListItem><Link to={'/catalog/woman'} style={{ textDecoration: 'none',color: "inherit" }} >Women Fashion </Link></ListItem> 
+          <ListItem><Link to={'/catalog/kids'} style={{ textDecoration: 'none',color: "inherit" }} >Kids Fashion </Link></ListItem> 
+          <ListItem><Link to={'/profile'} style={{ textDecoration: 'none',color: "inherit" }} >My Account </Link></ListItem> 
+          <ListItem><Link to={'/terms'} style={{ textDecoration: 'none',color: "inherit" }} >Terms and conditions </Link></ListItem> 
         </List>
       </Center>
       <Right>

@@ -1,8 +1,8 @@
 import { Send } from "@material-ui/icons";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
-
-
+import {emailPost} from "../../services/emailService"
 const Container = styled.div`
   height: 60vh;
   background-color: #fcf5f5;
@@ -43,17 +43,48 @@ const Button = styled.button`
   color: white;
 `;
 
+const Form = styled.form``;
+
+
 const NewsLetter = () => {
+  const [email, setEmail] = useState('');
+
+  const onClickHandler = (e) => {
+    e.preventDefault();
+    try {
+      emailPost(email)
+        .then(res => console.log(res))
+    } catch (error) {
+      console.log(error);
+    }
+    setEmail('')
+  };
+
+  // useEffect(() => {
+  //   emailPost(email)
+  //     .then(res => {
+  //       setEmail('')
+  //     })
+  // },[email]);
+
   return (
     <Container>
       <Title>Newsletter</Title>
       <Description>Get timely updates from your favorite profucts</Description>
-      <InputContainer>
-        <Input placeholder="Your email..." />
-        <Button>
-          <Send />
-        </Button>
-      </InputContainer>
+      <Form onSubmit={onClickHandler}>
+        <InputContainer>
+          <Input 
+          name="email" 
+          type="email" 
+          placeholder="Your email..." 
+          onChange={event => setEmail(event.target.value)}
+          value={email}
+          />
+          <Button>
+            <Send />
+          </Button>
+        </InputContainer>
+      </Form>
     </Container>
   );
 };

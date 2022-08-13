@@ -78,10 +78,10 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchContainer>
+          {/* <SearchContainer>
             <Input placeholder="Search" />
             <Search style={{ textDecoration: "none", color: 'inherit' }} />
-          </SearchContainer>
+          </SearchContainer> */}
         </Left>
         <Center>
           <Logo>

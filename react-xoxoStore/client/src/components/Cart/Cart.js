@@ -5,6 +5,7 @@ import { mobile } from "../../responsive";
 import { useAuthContext } from "../../context/AuthContext";
 import { useSelector } from "react-redux";
 import StripeCheckout from 'react-stripe-checkout';
+import { Link } from "react-router-dom";
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -156,14 +157,16 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
-  const { user } = useAuthContext();
+  
   const cart = useSelector((state) => state.cart);
   return (
     <Container>
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
+          <Link to={'/catalog'}>
           <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
           <TopTexts>
             <TopText>Shopping Bag({cart.quantity})</TopText>
             <TopText>Your Wishlist (0)</TopText>

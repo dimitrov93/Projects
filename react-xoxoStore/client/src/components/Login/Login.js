@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../../responsive";
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
 
@@ -63,24 +61,35 @@ const LinkToRegister = styled.a`
   cursor: pointer;
 `;
 
+const Error = styled.p`
+  color: #d9534f;
+  padding-top: 30px;
+`;
+
 const Login = () => {
   const { userLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [error, setError] = useState();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const { email, password } = Object.fromEntries(new FormData(e.target));
 
-    authService
-      .login(email, password)
+    try {
+      authService.login(email, password)
       .then((authData) => {
         userLogin(authData);
+        if (authData.message) {
+          setError(authData.message)
+          return
+        }
         navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
       });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
@@ -89,10 +98,16 @@ const Login = () => {
           <Title>Login with an Account</Title>
           <Form onSubmit={onSubmit}>
             <Input type="email" id="email" name="email" placeholder="Email" />
-            <Input type="password" id="login-password" name="password" placeholder="Password" />
+            <Input
+              type="password"
+              id="login-password"
+              name="password"
+              placeholder="Password"
+            />
             <Button>Login</Button>
-            <Link to='/register'>
-            <LinkToRegister>CREATE A NEW ACCOUNT</LinkToRegister>
+            {error && <Error>{error}</Error>}
+            <Link to="/register">
+              <LinkToRegister>CREATE A NEW ACCOUNT</LinkToRegister>
             </Link>
           </Form>
         </Wrapper>

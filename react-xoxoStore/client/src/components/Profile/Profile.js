@@ -31,7 +31,7 @@ const Title = styled.h3`
     text-decoration: underline;
 `
 
-const flexDiv = styled.div`
+const FlexedDiv = styled.div`
     display: flex;
 `
 
@@ -44,15 +44,15 @@ const Profile = () => {
         <Profil >
             <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKW7D6lGORGITe7TYh0coX0095pzvy3qVM353MdqwmZA&s' alt='error'></Image>
             <Title>User info: </Title>
-            <flexDiv>
+            <FlexedDiv>
                 <p>Username: {user.username} </p>
-            </flexDiv>
-            <flexDiv>
+            </FlexedDiv>
+            <FlexedDiv>
                 <p>Email: {user.email} </p>
-            </flexDiv>
-            <flexDiv>
+            </FlexedDiv>
+            <FlexedDiv>
                 <p>Purchases: </p>
-            </flexDiv>
+            </FlexedDiv>
         </Profil>
     </Section>
 
