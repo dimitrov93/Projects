@@ -74,7 +74,7 @@ const Product = ({ item }) => {
       <Image src={item.img} />
       <Info>
 
-        <Link style={{ color: "inherit" }} to={`/catalog/${item._id}`}>
+        <Link style={{ color: "inherit" }} to={`/cart`}>
           <Icon>
             <ShoppingCartOutlined />
           </Icon>

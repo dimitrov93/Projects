@@ -164,7 +164,6 @@ const ProductDetails = () => {
   };
 
   const addToCartHandler = () => {
-    //update cart
     dispatch(addProduct({...product,productsAmount, color, size}))
   }
 

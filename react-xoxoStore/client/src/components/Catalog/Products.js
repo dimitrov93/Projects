@@ -43,7 +43,17 @@ const Products = ({cat,filters,sort}) => {
     })
   }
 
-
+  useEffect(() => {
+    if (sort === "asc") {
+      setProducts((prev) =>
+        [...prev].sort((a, b) => a.price - b.price)
+      );
+    } else {
+      setProducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
+      );
+    }
+  }, [sort]);
 
   return (
     <Container>
