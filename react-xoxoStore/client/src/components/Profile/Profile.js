@@ -39,6 +39,8 @@ const FlexedDiv = styled.div`
 const Profile = () => {
     const { user } = useAuthContext();
 
+    let date = (user.createdAt).split('T')[0]
+
     return (
     <Section>
         <Profil >
@@ -49,6 +51,9 @@ const Profile = () => {
             </FlexedDiv>
             <FlexedDiv>
                 <p>Email: {user.email} </p>
+            </FlexedDiv>
+            <FlexedDiv>
+                <p>Registered: {date} </p>
             </FlexedDiv>
             <FlexedDiv>
                 <p>Purchases: </p>

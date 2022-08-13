@@ -3,6 +3,7 @@ import { mobile } from "../../responsive";
 import { useNavigate } from 'react-router-dom';
 import * as authService from "../../services/authService";
 import { withAuth } from "../../context/AuthContext";
+import { useState } from "react";
 
 
 const Container = styled.div`
@@ -57,10 +58,17 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Error = styled.p`
+  color: #d9534f;
+  padding-top: 30px;
+`;
+
 
 const Register = ({auth}) => {
   const navigate = useNavigate();
+  const [error, setError] = useState();
 
+  
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -77,6 +85,10 @@ const Register = ({auth}) => {
 
         authService.register(username, email, password)
         .then(authData => {
+            if (authData.message) {
+            setError(authData.message)
+            return
+            }
             auth.userLogin(authData);
             navigate('/');
         });
@@ -98,6 +110,7 @@ const Register = ({auth}) => {
               data in accordance with the <b>PRIVACY POLICY</b>
             </Agreement>
             <Button>CREATE</Button>
+            {error && <Error>{error}</Error>}
           </Form>
         </Wrapper>
       </Container>

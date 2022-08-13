@@ -83,7 +83,7 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>Ceko</Logo>
+        <Logo>Web application made by Ceko</Logo>
         <Description>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quidem
           iste necessitatibus laboriosam nihil consequuntur culpa rerum possimus
