@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 import * as productService from "../../services/productService";
@@ -61,19 +61,60 @@ const Select = styled.select`
   padding: 10px;
 `;
 
+const Error = styled.p`
+  color: #d9534f;
+  padding-top: 30px;
+`
+
 const Create = () => {
   // const { productAdd } = useContext(ProductContext);
   const { user } = useAuthContext();
+  const [errors, setErrors] = useState({});
+  const [values, setValues] = useState({
+    title: "",
+    description: "",
+    img: "",
+    price: "",
+    categories: "",
+    inStock: "",
+    color: "",
+    size: "",
+  });
+
+  const changeHandler = (e) => {
+    setValues((state) => ({
+      ...state,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const minLength = (e, bound) => {
+    setErrors((state) => ({
+      ...state,
+      [e.target.name]: values[e.target.name].length < bound,
+    }));
+  };
+
+  const isPositive = (e) => {
+    let number = Number(e.target.value);
+
+    setErrors((state) => ({
+      ...state,
+      [e.target.name]: number < 0,
+    }));
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     const productData = Object.fromEntries(new FormData(e.target));
-    productData['owner'] = user._id
-    productService.create(productData)
-      .then((result) => {
-        console.log(result);
-    });
+ 
+    productData["owner"] = user._id;
+
+    productService
+      .create(productData).then((result) => {
+    })
+    .catch(err => console.log(err))
   };
 
   function refreshPage() {
@@ -86,17 +127,54 @@ const Create = () => {
         <Wrapper>
           <Title>New Product</Title>
           <Form onSubmit={onSubmit}>
-            <Input name="title" type="text" placeholder="Title" />
+            <Input
+              name="title"
+              type="text"
+              placeholder="Title"
+              onChange={changeHandler}
+              onBlur={(e) => minLength(e, 3)}
+            />
+            {errors.title && <Error>Title should be at least 3 characters long!</Error>}
+
             <Input
               name="description"
               type="text"
               placeholder="Description..."
+              onChange={changeHandler}
+              onBlur={(e) => minLength(e, 10)}
+              />
+              {errors.description && (
+                    <Error>
+                      Description should be at least 10 characters long!
+                    </Error>
+              )}
+            <Input 
+            name="img" 
+            type="text" 
+            placeholder="Image..." 
+            onChange={changeHandler}
+            onBlur={(e) => minLength(e, 10)}
             />
-            <Input name="img" type="text" placeholder="Image..." />
-            <Input name="price" type="number" placeholder="Price" />
+            {errors.img && (
+                  <Error>
+                    Image is not valid!
+                  </Error>
+            )}
+            <Input 
+            name="price" 
+            type="number" 
+            placeholder="Price"
+            onChange={changeHandler}
+            onBlur={(e) => isPositive(e)}
+            />
+            {errors.price && (
+                  <Error>
+                    Price should be a positive number!
+                  </Error>
+            )}
             <Select name="categories">
               <option value="" hidden>
-              Category
+                Category
               </option>
               <option value="women">Women</option>
               <option value="men">Men</option>
@@ -109,8 +187,30 @@ const Create = () => {
               <option value="true">Yes</option>
               <option value="false">No</option>
             </Select>
-            <Input name="color" type="text" placeholder="Color..." />
-            <Input name="size" type="text" placeholder="Size" />
+            <Input 
+            name="color" 
+            type="text" 
+            placeholder="Color..." 
+            onChange={changeHandler}
+            onBlur={(e) => minLength(e, 3)}
+            />
+            {errors.color && (
+                  <Error>
+                    Color is required!
+                  </Error>
+            )}
+            <Input 
+            name="size" 
+            type="text" 
+            placeholder="Size" 
+            onChange={changeHandler}
+            onBlur={(e) => minLength(e, 1)}
+            />
+            {errors.size && (
+                  <Error>
+                    Size is not valid!
+                  </Error>
+            )}
             <Button onClick={refreshPage}>CREATE</Button>
           </Form>
         </Wrapper>

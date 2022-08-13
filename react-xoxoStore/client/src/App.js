@@ -16,6 +16,7 @@ import Footer from "./components/Footer/Footer";
 import NewsLetter from "./components/Home/NewsLetter";
 import Edit from "./components/EditProduct/Edit";
 import Profile from "./components/Profile/Profile";
+import ErrorBoundary from "./components/common/ErrorBoundary";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <div className="App">
         <Navbar />
         <Announcement />
+        <ErrorBoundary>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
@@ -44,6 +46,7 @@ function App() {
 
           <Route path="*" element={<Notfound />} />
         </Routes>
+          </ErrorBoundary>
       </div>
       <NewsLetter />
       <Footer />
