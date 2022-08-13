@@ -25,28 +25,28 @@ function App() {
         <Navbar />
         <Announcement />
         <ErrorBoundary>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/catalog/" element={<CatalogList all='all' />} />
-          <Route path="/catalog/woman" element={<CatalogList women='women' />} />
-          <Route path="/catalog/men" element={<CatalogList men='men' />} />
-          <Route path="/catalog/kids" element={<CatalogList kids='kids' />} />
-          <Route path="/catalog/:id" element={<ProductDetails />} />
-          <Route path="/catalog/:id/edit" element={<Edit />} />
-          <Route path="/catalog/:category" element={<CatalogList all='all' />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route element={<LogginGuard />}></Route>
-          <Route path="/create" element={<Create />} />
-            <Route path="/cart" element={<Cart />} />
-          <Route element={<LogginGuard />}>
-          </Route>
-            <Route path="/logout" element={<Logout />} />
+          <Routes>
+            <Route path="/" element={<Home />} />
 
-          <Route path="*" element={<Notfound />} />
-        </Routes>
-          </ErrorBoundary>
+            <Route element={<LogginGuard />}>
+              <Route path="/create" element={<Create />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/catalog/" element={<CatalogList all="all" />} />
+              <Route path="/catalog/woman" element={<CatalogList women="women" />} />
+              <Route path="/catalog/men" element={<CatalogList men="men" />} />
+              <Route path="/catalog/kids" element={<CatalogList kids="kids" />} />
+              <Route path="/catalog/:id" element={<ProductDetails />} />
+              <Route path="/catalog/:id/edit" element={<Edit />} />
+              <Route path="/catalog/:category" element={<CatalogList all="all" />} />
+            </Route>
+
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="*" element={<Notfound />} />
+          </Routes>
+        </ErrorBoundary>
       </div>
       <NewsLetter />
       <Footer />
