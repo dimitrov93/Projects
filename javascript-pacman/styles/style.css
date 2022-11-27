@@ -1,0 +1,8 @@
+:root {
+    --clr-background: black;
+}
+
+body {
+    margin: 0;
+    background-color: var(--clr-background);
+}
