@@ -514,8 +514,14 @@ function animate() {
             cancelAnimationFrame(animationId)
             alert('You lose');
         }
-
       }
+  }
+
+  // win condition goes here
+
+  if (pellets.length === 0) {
+    alert('You win')
+    cancelAnimationFrame(animationId)
   }
 
   // POWER UPS GO
