@@ -80,12 +80,13 @@ class Ghost {
     (this.color = color);
     this.prevCollisions = [];
     this.speed = 2;
+    this.scared = false;
   }
 
   draw() {
     c.beginPath();
     c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = this.color;
+    c.fillStyle = this.scared ? 'blue' : this.color;
     c.fill();
     c.closePath();
   }
@@ -120,6 +121,23 @@ const ghosts = [
     color: "pink",
   }),
 ];
+
+class Powerup {
+    constructor({ position }) {
+      (this.position = position),
+      (this.radius = 8)
+    }
+  
+    draw() {
+      c.beginPath();
+      c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+      c.fillStyle = 'orange';
+      c.fill();
+      c.closePath();
+    }
+  }
+
+const PowerUps = [];
 
 const keys = {
   w: {
@@ -356,6 +374,17 @@ map.forEach((row, i) => {
           })
         );
         break;
+
+        case "p":
+            PowerUps.push(
+              new Powerup({
+                position: {
+                  x: j * Boundary.width + Boundary.width / 2,
+                  y: i * Boundary.height + Boundary.height / 2,
+                },
+              })
+            );
+            break;
     }
   });
 });
@@ -464,9 +493,59 @@ function animate() {
       }
     }
   }
+  // detect collisions between ghost sand player 
+
+  for (let i = ghosts.length - 1; i >= 0; i--) {
+    const ghost = ghosts[i];
+    ghost.draw()
+
+    // player collides with powerup
+    if (
+        Math.hypot(
+            ghost.position.x - player.position.x,
+            ghost.position.y - player.position.y
+        ) <
+        ghost.radius + player.radius
+      ) {
+
+        if (ghost.scared) {
+            ghosts.splice(i,1)
+        } else {
+            cancelAnimationFrame(animationId)
+            alert('You lose');
+        }
+
+      }
+  }
+
+  // POWER UPS GO
+  for (let i = PowerUps.length - 1; i >= 0; i--) {
+    const powerUp = PowerUps[i];
+    powerUp.draw()
+
+    // player collides with powerup
+    if (
+        Math.hypot(
+          powerUp.position.x - player.position.x,
+          powerUp.position.y - player.position.y
+        ) <
+        powerUp.radius + player.radius
+      ) {
+        PowerUps.splice(i, 1);
+
+        // make ghosts scared
+        ghosts.forEach(ghost => {
+            ghost.scared = true;
+
+            setTimeout(() => {
+                ghost.scared = false;
+            }, 3000);
+        })
+      }
+  }
 
   // TOUCH AND EATING PALLETS //
-  for (let i = pellets.length - 1; i > 0; i--) {
+  for (let i = pellets.length - 1; i >= 0; i--) {
     const pellet = pellets[i];
     pellet.draw();
 
@@ -502,12 +581,14 @@ function animate() {
   ghosts.forEach((ghost) => {
     ghost.update();
 
+    // Ghost touches player
+
     if (
       Math.hypot(
         ghost.position.x - player.position.x,
         ghost.position.y - player.position.y
       ) <
-      ghost.radius + player.radius
+      ghost.radius + player.radius && !ghost.scared
     ) {
       cancelAnimationFrame(animationId);
       alert("You lose");
