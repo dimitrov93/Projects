@@ -294,15 +294,16 @@ map.forEach((row, i) => {
         );
         break;
 
-        case ".":
-            pellets.push(
-              new Pellet({
-                position: {
-                  x: j * Boundary.width + Boundary.width / 2 ,
-                  y: i * Boundary.height + Boundary.height / 2,
-                }              })
-            );
-            break;
+      case ".":
+        pellets.push(
+          new Pellet({
+            position: {
+              x: j * Boundary.width + Boundary.width / 2,
+              y: i * Boundary.height + Boundary.height / 2,
+            },
+          })
+        );
+        break;
     }
   });
 });
@@ -410,7 +411,21 @@ function animate() {
     }
   }
 
-  pellets.forEach(p => p.draw())
+  for (let i = pellets.length - 1; i > 0; i--) {
+    const pellet = pellets[i]
+    pellet.draw();
+
+    if (
+      Math.hypot(
+        pellet.position.x - player.position.x,
+        pellet.position.y - player.position.y
+      ) <
+      pellet.radius + player.radius
+    ) {
+        pellets.splice(i,1)
+    }
+  }
+
 
   boundaries.forEach((b) => {
     b.draw();
