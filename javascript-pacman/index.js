@@ -28,21 +28,43 @@ const boundaries = [];
 
 class Player {
   constructor({ position, velocity }) {
-    (this.position = position), (this.velocity = velocity), (this.radius = 15);
+    (this.position = position),
+      (this.velocity = velocity),
+      (this.radius = 15),
+      (this.radians = 0.75),
+      (this.openRate = 0.12);
+      this.rotation = 0;
   }
 
   draw() {
+    c.save();
+    c.translate(this.position.x, this.position.y);
+    c.rotate(this.rotation);
+    c.translate(-this.position.x, -this.position.y);
+
     c.beginPath();
-    c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+    c.arc(
+      this.position.x,
+      this.position.y,
+      this.radius,
+      this.radians,
+      Math.PI * 2 - this.radians
+    );
+    c.lineTo(this.position.x, this.position.y);
     c.fillStyle = "yellow";
     c.fill();
     c.closePath();
+    c.restore();
   }
 
   update() {
     this.draw();
     this.position.x += this.velocity.x;
     this.position.y += this.velocity.y;
+
+    if (this.radians < 0 || this.radians > 0.75) this.openRate = -this.openRate;
+
+    this.radians += this.openRate;
   }
 }
 const player = new Player({
@@ -75,9 +97,9 @@ class Ghost {
   static speed = 2;
   constructor({ position, velocity, color = "red" }) {
     (this.position = position),
-    (this.velocity = velocity),
-    (this.radius = 15),
-    (this.color = color);
+      (this.velocity = velocity),
+      (this.radius = 15),
+      (this.color = color);
     this.prevCollisions = [];
     this.speed = 2;
     this.scared = false;
@@ -86,7 +108,7 @@ class Ghost {
   draw() {
     c.beginPath();
     c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-    c.fillStyle = this.scared ? 'blue' : this.color;
+    c.fillStyle = this.scared ? "blue" : this.color;
     c.fill();
     c.closePath();
   }
@@ -112,7 +134,7 @@ const ghosts = [
   new Ghost({
     position: {
       x: Boundary.width * 6 + Boundary.width / 2,
-      y: (Boundary.height * 3 +Boundary.height) / 2,
+      y: (Boundary.height * 3 + Boundary.height) / 2,
     },
     velocity: {
       x: Ghost.speed,
@@ -123,19 +145,18 @@ const ghosts = [
 ];
 
 class Powerup {
-    constructor({ position }) {
-      (this.position = position),
-      (this.radius = 8)
-    }
-  
-    draw() {
-      c.beginPath();
-      c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
-      c.fillStyle = 'orange';
-      c.fill();
-      c.closePath();
-    }
+  constructor({ position }) {
+    (this.position = position), (this.radius = 8);
   }
+
+  draw() {
+    c.beginPath();
+    c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2);
+    c.fillStyle = "orange";
+    c.fill();
+    c.closePath();
+  }
+}
 
 const PowerUps = [];
 
@@ -375,16 +396,16 @@ map.forEach((row, i) => {
         );
         break;
 
-        case "p":
-            PowerUps.push(
-              new Powerup({
-                position: {
-                  x: j * Boundary.width + Boundary.width / 2,
-                  y: i * Boundary.height + Boundary.height / 2,
-                },
-              })
-            );
-            break;
+      case "p":
+        PowerUps.push(
+          new Powerup({
+            position: {
+              x: j * Boundary.width + Boundary.width / 2,
+              y: i * Boundary.height + Boundary.height / 2,
+            },
+          })
+        );
+        break;
     }
   });
 });
@@ -493,61 +514,53 @@ function animate() {
       }
     }
   }
-  // detect collisions between ghost sand player 
+  // detect collisions between ghost sand player
 
   for (let i = ghosts.length - 1; i >= 0; i--) {
     const ghost = ghosts[i];
-    ghost.draw()
+    ghost.draw();
 
     // player collides with powerup
     if (
-        Math.hypot(
-            ghost.position.x - player.position.x,
-            ghost.position.y - player.position.y
-        ) <
-        ghost.radius + player.radius
-      ) {
-
-        if (ghost.scared) {
-            ghosts.splice(i,1)
-        } else {
-            cancelAnimationFrame(animationId)
-            alert('You lose');
-        }
+      Math.hypot(
+        ghost.position.x - player.position.x,
+        ghost.position.y - player.position.y
+      ) <
+      ghost.radius + player.radius
+    ) {
+      if (ghost.scared) {
+        ghosts.splice(i, 1);
+      } else {
+        cancelAnimationFrame(animationId);
+        alert("You lose");
       }
-  }
-
-  // win condition goes here
-
-  if (pellets.length === 0) {
-    alert('You win')
-    cancelAnimationFrame(animationId)
+    }
   }
 
   // POWER UPS GO
   for (let i = PowerUps.length - 1; i >= 0; i--) {
     const powerUp = PowerUps[i];
-    powerUp.draw()
+    powerUp.draw();
 
     // player collides with powerup
     if (
-        Math.hypot(
-          powerUp.position.x - player.position.x,
-          powerUp.position.y - player.position.y
-        ) <
-        powerUp.radius + player.radius
-      ) {
-        PowerUps.splice(i, 1);
+      Math.hypot(
+        powerUp.position.x - player.position.x,
+        powerUp.position.y - player.position.y
+      ) <
+      powerUp.radius + player.radius
+    ) {
+      PowerUps.splice(i, 1);
 
-        // make ghosts scared
-        ghosts.forEach(ghost => {
-            ghost.scared = true;
+      // make ghosts scared
+      ghosts.forEach((ghost) => {
+        ghost.scared = true;
 
-            setTimeout(() => {
-                ghost.scared = false;
-            }, 3000);
-        })
-      }
+        setTimeout(() => {
+          ghost.scared = false;
+        }, 3000);
+      });
+    }
   }
 
   // TOUCH AND EATING PALLETS //
@@ -594,7 +607,8 @@ function animate() {
         ghost.position.x - player.position.x,
         ghost.position.y - player.position.y
       ) <
-      ghost.radius + player.radius && !ghost.scared
+        ghost.radius + player.radius &&
+      !ghost.scared
     ) {
       cancelAnimationFrame(animationId);
       alert("You lose");
@@ -681,9 +695,9 @@ function animate() {
           ghost.prevCollisions.push("down");
         }
 
-        const pathways = ghost.prevCollisions.filter(collision => {
-            return !collisions.includes(collision)
-        })
+        const pathways = ghost.prevCollisions.filter((collision) => {
+          return !collisions.includes(collision);
+        });
 
         const direction = pathways[Math.floor(Math.random() * pathways.length)];
 
@@ -705,10 +719,20 @@ function animate() {
             break;
         }
         ghost.prevCollisions = [];
+      }
+    });
+  });
 
-    }
-});
-});
+  if (player.velocity.x > 0) {
+    player.rotation = 0
+  } else  if (player.velocity.x < 0) {
+    player.rotation = Math.PI
+  }
+  else  if (player.velocity.y > 0) {
+    player.rotation = Math.PI / 2
+  }   else  if (player.velocity.y < 0) {
+    player.rotation = Math.PI * 1.5
+  }
 }
 
 animate();
@@ -754,3 +778,10 @@ window.addEventListener("keyup", ({ key }) => {
       break;
   }
 });
+
+// win condition goes here
+
+if (pellets.length === 0) {
+  alert("You win");
+  cancelAnimationFrame(animationId);
+}
