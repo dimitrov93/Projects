@@ -1,6 +1,8 @@
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
+const scorePoints = document.querySelector('#scoreNumber')
+
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
@@ -86,6 +88,7 @@ const keys = {
 };
 
 let lastKey = "";
+let scores = 0;
 
 /// ---- MAP ---- ///
 
@@ -411,6 +414,8 @@ function animate() {
     }
   }
 
+
+  // TOUCH AND EATING PALLETS // 
   for (let i = pellets.length - 1; i > 0; i--) {
     const pellet = pellets[i]
     pellet.draw();
@@ -423,6 +428,8 @@ function animate() {
       pellet.radius + player.radius
     ) {
         pellets.splice(i,1)
+        scores += 10;
+        scorePoints.innerHTML = Number(scores)
     }
   }
 
