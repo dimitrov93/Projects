@@ -1,3 +1,5 @@
+import Pacman from "./Packman.js"
+
 export default class TileMap {
   constructor(tileSize) {
     this.tileSize = tileSize;
@@ -8,6 +10,10 @@ export default class TileMap {
     this.wall = new Image();
     this.wall.src = "images/wall.png";
  }
+
+ // 1 - wall
+ // 0 - dots 
+ // 4 - pacman
 
   map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -59,6 +65,19 @@ export default class TileMap {
       size,
       size
     );
+  }
+
+  getPackman(velocity) {
+    for (let row = 0; row < this.map.length; row++) {
+      for (let column = 0; column < this.map[row].length; column++) {
+          let tile = this.map[row][column];
+
+          if (tile === 4) {
+            this.map[row][column] = 0; // contains packan
+              return new Pacman(column * this.tileSize, row * this.tileSize, this.tileSize, velocity, this)
+          }
+        }
+    }
   }
 
   setCanvasSize(canvas) {
