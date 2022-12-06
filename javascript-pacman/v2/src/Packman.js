@@ -8,13 +8,16 @@ export default class Pacman {
     this.velocity = velocity;
     this.tileMap = tileMap;
 
+    this.pacmanAnimationTimerDefault = 10;
+    this.pacmanAnimationTimer = null;
+
     document.addEventListener("keydown", this.#keydown);
 
     this.#loadPacmanImages();
   }
   draw(ctx) {
     this.#move();
-
+    this.#animate();
     ctx.drawImage(
       this.pacmanImages[this.pacmanImageIndex],
       this.x,
@@ -96,7 +99,7 @@ export default class Pacman {
       }
     }
 
-    // COLLISIONS 
+    // COLLISIONS
     if (
       this.tileMap.didCollideWithEnv(
         this.x,
@@ -104,8 +107,15 @@ export default class Pacman {
         this.currentMovingDirection
       )
     ) {
-        return;
-    }
+        this.pacmanAnimationTimer = null
+        this.pacmanImageIndex = 1;
+      return;
+    } else if (
+        this.currentMovingDirection != null &&
+        this.pacmanAnimationTimer == null
+      ) {
+        this.pacmanAnimationTimer = this.pacmanAnimationTimerDefault;
+      }
 
     switch (this.currentMovingDirection) {
       case MovingDirection.up:
@@ -120,6 +130,19 @@ export default class Pacman {
       case MovingDirection.right:
         this.x += this.velocity;
         break;
+    }
+  }
+
+  #animate() {
+    if (this.pacmanAnimationTimer == null) {
+      return;
+    }
+    this.pacmanAnimationTimer--;
+    if (this.pacmanAnimationTimer == 0) {
+      this.pacmanAnimationTimer = this.pacmanAnimationTimerDefault;
+      this.pacmanImageIndex++;
+      if (this.pacmanImageIndex == this.pacmanImages.length)
+        this.pacmanImageIndex = 0;
     }
   }
 }

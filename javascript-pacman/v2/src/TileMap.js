@@ -19,7 +19,7 @@ export default class TileMap {
 
   map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 7, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 1],
+    [1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
     [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 1, 0, 1],
     [1, 0, 1, 7, 1, 1, 1, 0, 1, 0, 1, 0, 1],
@@ -27,7 +27,7 @@ export default class TileMap {
     [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
     [1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1],
-    [1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
 
@@ -98,6 +98,11 @@ export default class TileMap {
   }
 
   didCollideWithEnv(x, y, direction) {
+
+    if (direction == null) {
+      return;
+    }
+
     if (
       Number.isInteger(x / this.tileSize) &&
       Number.isInteger(y / this.tileSize)
