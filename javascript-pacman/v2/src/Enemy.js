@@ -18,10 +18,13 @@ export default class Enemy {
     this.directionTimer = this.directionTimerDefault;
   }
 
-  draw(ctx) {
-    this.#move();
-    this.#changeDirection();
+  draw(ctx, pause) {
+    if (!pause) {
+      this.#move();
+      this.#changeDirection();
+    }
     ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize);
+
   }
 
   #changeDirection() {
@@ -71,13 +74,13 @@ export default class Enemy {
 
   #loadImages() {
     this.normalGhost = new Image();
-    this.normalGhost.src = "../images/ghost.png";
+    this.normalGhost.src = "images/ghost.png";
 
     this.scaredGhost = new Image();
-    this.scaredGhost.src = "../images/scaredGhost.png";
+    this.scaredGhost.src = "images/scaredGhost.png";
 
     this.scaredGhost2 = new Image();
-    this.scaredGhost2.src = "../images/scaredGhost2.png";
+    this.scaredGhost2.src = "images/scaredGhost2.png";
 
     this.image = this.normalGhost;
   }

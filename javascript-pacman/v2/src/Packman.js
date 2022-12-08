@@ -12,7 +12,9 @@ export default class Pacman {
     this.pacmanAnimationTimer = null;
 
     this.pacmanRotation = this.Rotation.right;
-    this.wakaSounds = new Audio('../sounds/waka.wav')
+    this.wakaSounds = new Audio('sounds/waka.wav')
+
+    this.madeFirstMove = false;
 
     document.addEventListener("keydown", this.#keydown);
 

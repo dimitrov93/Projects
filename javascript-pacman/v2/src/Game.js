@@ -14,10 +14,13 @@ function gameLoop() {
   tileMap.draw(ctx);
   pacMan.draw(ctx)
   enemies.forEach(enemy => {
-    enemy.draw(ctx)
+    enemy.draw(ctx, pause())
   });
 }
 
+function pause() {
+  return !pacMan.madeFirstMove
+}
 
 tileMap.setCanvasSize(canvas);
 setInterval(gameLoop, 1000 / 75);
