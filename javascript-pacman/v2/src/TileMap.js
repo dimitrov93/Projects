@@ -18,7 +18,7 @@ export default class TileMap {
 
     // Power Dot
     this.powerDot = this.pinkDot;
-    this.powerDotAnimationTimerDefault = 30;
+    this.powerDotAnimationTimerDefault = 40;
     this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault;
   }
 
