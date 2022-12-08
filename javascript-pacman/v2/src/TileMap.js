@@ -1,5 +1,5 @@
 import Pacman from "./Packman.js";
-import Enemy from "./Enemy.js"
+import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
 
 export default class TileMap {
@@ -9,8 +9,17 @@ export default class TileMap {
     this.yellowDot = new Image();
     this.yellowDot.src = "images/yellowDot.png";
 
+    this.pinkDot = new Image();
+    this.pinkDot.src = "images/pinkDot.png";
+
     this.wall = new Image();
     this.wall.src = "images/wall.png";
+
+
+    // Power Dot
+    this.powerDot = this.pinkDot;
+    this.powerDotAnimationTimerDefault = 30;
+    this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault;
   }
 
   // 1 - wall
@@ -22,7 +31,7 @@ export default class TileMap {
 
   map = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 7, 0, 0, 4, 0, 0, 0, 0, 0, 0, 7, 1],
     [1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
     [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 1, 0, 1],
     [1, 0, 1, 7, 1, 1, 1, 0, 1, 0, 1, 0, 1],
@@ -42,6 +51,8 @@ export default class TileMap {
           this.#drawWall(ctx, column, row, this.tileSize);
         } else if (tile === 0) {
           this.#drawDot(ctx, column, row, this.tileSize);
+        } else if (tile === 7) {
+          this.#drawPowerDot(ctx, column, row, this.tileSize);
         } else {
           this.#drawBlank(ctx, column, row, this.tileSize);
         }
@@ -66,6 +77,19 @@ export default class TileMap {
       size,
       size
     );
+  }
+
+  #drawPowerDot(ctx, column, row, size) {
+    this.powerDotAnimationTimer--;
+    if (this.powerDotAnimationTimer === 0) {
+      this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault
+      if (this.powerDot == this.pinkDot) {
+        this.powerDot = this.yellowDot
+      } else {
+        this.powerDot = this.pinkDot
+      }
+    }
+    ctx.drawImage(this.powerDot, column * size, row * size, size, size)
   }
 
   #drawWall(ctx, column, row, size) {
@@ -190,6 +214,6 @@ export default class TileMap {
         }
       }
     }
-    return enemies
+    return enemies;
   }
 }
