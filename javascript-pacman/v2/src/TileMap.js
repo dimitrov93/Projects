@@ -1,6 +1,7 @@
 import Pacman from "./Packman.js";
 import Enemy from "./Enemy.js";
 import MovingDirection from "./MovingDirection.js";
+const scorePoints = document.querySelector("#scoreNumber");
 
 export default class TileMap {
   constructor(tileSize) {
@@ -186,6 +187,7 @@ export default class TileMap {
     if (Number.isInteger(row) && Number.isInteger(column)) {
       if (this.map[row][column] === 0) {
         this.map[row][column] = 5;
+        scorePoints.innerHTML = Number(scorePoints.innerHTML) + 10;
         return true;
       }
     } else {
@@ -227,5 +229,13 @@ export default class TileMap {
       }
     }
     return enemies;
+  }
+
+  didWin() {
+    return this.#dotsLeft() === 0;
+  }
+
+  #dotsLeft() {
+    return this.map.flat().filter(x => x === 0).length
   }
 }
