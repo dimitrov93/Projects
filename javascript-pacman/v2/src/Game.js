@@ -14,7 +14,7 @@ function gameLoop() {
   tileMap.draw(ctx);
   pacMan.draw(ctx)
   enemies.forEach(enemy => {
-    enemy.draw(ctx, pause())
+    enemy.draw(ctx, pause(), pacMan)
   });
 }
 

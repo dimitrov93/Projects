@@ -15,7 +15,6 @@ export default class TileMap {
     this.wall = new Image();
     this.wall.src = "images/wall.png";
 
-
     // Power Dot
     this.powerDot = this.pinkDot;
     this.powerDotAnimationTimerDefault = 40;
@@ -82,14 +81,14 @@ export default class TileMap {
   #drawPowerDot(ctx, column, row, size) {
     this.powerDotAnimationTimer--;
     if (this.powerDotAnimationTimer === 0) {
-      this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault
+      this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault;
       if (this.powerDot == this.pinkDot) {
-        this.powerDot = this.yellowDot
+        this.powerDot = this.yellowDot;
       } else {
-        this.powerDot = this.pinkDot
+        this.powerDot = this.pinkDot;
       }
     }
-    ctx.drawImage(this.powerDot, column * size, row * size, size, size)
+    ctx.drawImage(this.powerDot, column * size, row * size, size, size);
   }
 
   #drawWall(ctx, column, row, size) {
@@ -192,6 +191,19 @@ export default class TileMap {
     } else {
       return false;
     }
+  }
+
+  eatPowerDot(x, y) {
+    const row = y / this.tileSize;
+    const column = x / this.tileSize;
+    if (Number.isInteger(row) && Number.isInteger(column)) {
+      const tile = this.map[row][column]
+      if (tile === 7) {
+        this.map[row][column] = 5
+        return true;
+      }
+    }
+    return false
   }
 
   getEnemies(velocity) {

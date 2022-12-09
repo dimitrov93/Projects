@@ -13,6 +13,10 @@ export default class Pacman {
 
     this.pacmanRotation = this.Rotation.right;
     this.wakaSounds = new Audio('sounds/waka.wav')
+    this.powerDotSound = new Audio('sounds/power_dot.wav')
+    this.powerDotActive = false;
+    this.powerDotAboutToExpire = false;
+    this.timers = [];
 
     this.madeFirstMove = false;
 
@@ -32,6 +36,7 @@ export default class Pacman {
     this.#move();
     this.#animate();
     this.#eatDot();
+    this.#eatPowerDot();
 
     const size = this.tileSize / 2;
     ctx.save();
@@ -179,8 +184,35 @@ export default class Pacman {
   }
 
   #eatDot() {
-    if (this.tileMap.eatDot(this.x,this.y)) {
+    if (this.tileMap.eatDot(this.x,this.y) && this.madeFirstMove) {
       this.wakaSounds.play();
     }
   }
+
+  #eatPowerDot() {
+    if (this.tileMap.eatPowerDot(this.x, this.y)) {
+      this.powerDotSound.play();
+      this.powerDotActive = true;
+      this.powerDotAboutToExpire = false;
+      // this.timers.forEach((timer) => {
+      //   clearTimeout(timer)
+      // });
+      // this.timers = [];
+
+      let powerDotTimer = setTimeout(() => {
+        this.powerDotActive = false;
+        this.powerDotAboutToExpire = false;
+      }, 1000 * 6);
+
+      // this.timers.push(powerDotTimer);
+
+      let powerDotAboutToExpireTimer = setTimeout(() => {
+        this.powerDotAboutToExpire = true;
+      }, 1000 * 3);
+
+      // this.timers.push(powerDotAboutToExpireTimer);
+    }
+  }
+
+
 }
