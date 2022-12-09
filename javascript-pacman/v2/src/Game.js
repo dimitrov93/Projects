@@ -22,6 +22,7 @@ function gameLoop() {
   enemies.forEach((enemy) => {
     enemy.draw(ctx, pause(), pacMan);
   });
+
   checkGameOver();
   checkGameWin();
 }

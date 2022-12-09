@@ -20,6 +20,7 @@ export default class TileMap {
     this.powerDot = this.pinkDot;
     this.powerDotAnimationTimerDefault = 40;
     this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault;
+
   }
 
   // 1 - wall
@@ -42,6 +43,7 @@ export default class TileMap {
     [1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
+
 
   draw(ctx) {
     for (let row = 0; row < this.map.length; row++) {
@@ -184,10 +186,11 @@ export default class TileMap {
     const row = y / this.tileSize;
     const column = x / this.tileSize;
 
+    let scores = Number(this.map.flat().filter(x => x === 5).length)
     if (Number.isInteger(row) && Number.isInteger(column)) {
       if (this.map[row][column] === 0) {
+        scorePoints.innerHTML = scores * 10 ;
         this.map[row][column] = 5;
-        scorePoints.innerHTML = Number(scorePoints.innerHTML) + 10;
         return true;
       }
     } else {
@@ -238,4 +241,7 @@ export default class TileMap {
   #dotsLeft() {
     return this.map.flat().filter(x => x === 0).length
   }
+
+
+  
 }
