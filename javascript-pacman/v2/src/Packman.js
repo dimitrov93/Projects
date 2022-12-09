@@ -32,9 +32,13 @@ export default class Pacman {
     up: 3,
   };
 
-  draw(ctx) {
-    this.#move();
-    this.#animate();
+  draw(ctx, pause) {
+
+    if (!pause) {
+      this.#move();
+      this.#animate();
+    }
+
     this.#eatDot();
     this.#eatPowerDot();
 

@@ -27,17 +27,29 @@ export default class Enemy {
       this.#changeDirection();
     }
     this.#setImage(ctx, pacman);
-
   }
-  
+
+  collideWith(pacman) {
+    const size = this.tileSize / 2;
+    if (
+      this.x < pacman.x + size &&
+      this.x + size > pacman.x &&
+      this.y < pacman.y + size &&
+      this.y + size > pacman.y
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   #setImage(ctx, pacman) {
     if (pacman.powerDotActive) {
-      this.#setImageWhenPowerDotIsActive(pacman)
+      this.#setImageWhenPowerDotIsActive(pacman);
     } else {
-      this.image = this.normalGhost
+      this.image = this.normalGhost;
     }
     ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize);
-
   }
 
   #setImageWhenPowerDotIsActive(pacman) {
@@ -46,13 +58,13 @@ export default class Enemy {
       if (this.scaredAboutToExpire === 0) {
         this.scaredAboutToExpire = this.scaredAboutToExpireDefault;
         if (this.image === this.scaredGhost) {
-          this.image = this.scaredGhost2
+          this.image = this.scaredGhost2;
         } else {
-          this.image = this.scaredGhost
+          this.image = this.scaredGhost;
         }
       }
     } else {
-      this.image = this.scaredGhost
+      this.image = this.scaredGhost;
     }
   }
 
