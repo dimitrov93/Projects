@@ -17,7 +17,7 @@ const gameWinSound = new Audio("sounds/gameWin.wav");
 
 function gameLoop() {
   tileMap.draw(ctx);
-  pacMan.draw(ctx, pause());
+  pacMan.draw(ctx, pause(), enemies);
   enemies.forEach((enemy) => {
     enemy.draw(ctx, pause(), pacMan);
   });
