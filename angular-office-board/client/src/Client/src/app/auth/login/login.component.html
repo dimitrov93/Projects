@@ -12,15 +12,15 @@
                 <div class="text-center">
                   <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                 </div>
-                <form class="user">
+                <form class="user" [formGroup]="form" (ngSubmit)="loginHandler()">
                   <div class="form-group">
-                    <label for="exampleInputUsername1">Username</label>
-                    <input type="text" class="form-control" />
+                    <label for="exampleInputUsername1">Email</label>
+                    <input type="text" class="form-control" formControlName="email"  />
                   </div>
-                  <div class="alert alert-danger">Username is required!</div>
+                  <div class="alert alert-danger">Email is required!</div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" />
+                    <input type="password" class="form-control" formControlName="password" />
                   </div>
                   <div class="alert alert-danger">Password is required!</div>
                   <button

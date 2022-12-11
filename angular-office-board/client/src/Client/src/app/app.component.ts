@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Client';
+  title = 'Office Board';
+
+  constructor(private authService: AuthService, private router: Router)  {}
+
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/auth/login"]);
+  }
+
+  confirmLogout() {
+    if (confirm("Logout?")) {
+      this.logout();
+    }
+  }
 }

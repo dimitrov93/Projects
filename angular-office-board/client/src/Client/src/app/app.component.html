@@ -28,7 +28,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider" />
 
-      <div>
+      <div *ngIf="isAuthenticated()">
         <!-- Heading -->
         <div class="sidebar-heading">Messages</div>
 
@@ -78,25 +78,26 @@
 
         <!-- Nav Item -->
         <li class="nav-item">
-          <a class="nav-link" routerLink="/profile/edit">
+          <a class="nav-link">
             <i class="fa-solid fa-pen-to-square"></i>
             <span> Edit Profile</span>
           </a>
         </li>
 
         <!-- Nav Item -->
-        <li class="nav-item">
+        <li class="nav-item" (click)="confirmLogout()">
           <a class="nav-link">
-            <i class="fa-solid fa-right-from-bracket"></i>
+            <i class="fa-solid fa-right-from-bracket" ></i>
             <span> Logout</span>
           </a>
         </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
       </div>
 
-      <div>
+      <div *ngIf="!isAuthenticated()">
         <!-- Nav Item -->
         <li class="nav-item">
           <a class="nav-link" routerLink="/auth/login">
