@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'tasks',
+    loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
+  },
+  {
     path: '404',
     component: PageNotFoundComponent
   },
