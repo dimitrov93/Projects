@@ -17,12 +17,16 @@
                     <label for="exampleInputUsername1">Email</label>
                     <input type="text" class="form-control" formControlName="email"  />
                   </div>
-                  <div class="alert alert-danger">Email is required!</div>
+                  <ng-container *ngIf="form.get('email')?.touched">
+                    <div class="alert alert-danger" *ngIf="form.get('email')?.errors?.['required']">Email is required!</div>
+                  </ng-container>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" class="form-control" formControlName="password" />
                   </div>
-                  <div class="alert alert-danger">Password is required!</div>
+                  <ng-container *ngIf="form.get('password')?.touched">
+                    <div class="alert alert-danger" *ngIf="form.get('password')?.errors?.['required']">Password is required!</div>
+                  </ng-container>
                   <button
                     type="submit"
                     class="btn btn-primary btn-user btn-block my-4"

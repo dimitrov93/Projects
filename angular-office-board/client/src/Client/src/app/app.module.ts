@@ -7,13 +7,15 @@ import { HttpClientModule } from '@angular/common/http'
 
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { AppEmailDirective } from './shared/validators/app-email.directive';
+import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-
+    AppEmailDirective,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
