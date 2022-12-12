@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { IUsers } from '../shared/interfaces';
+import { IUsers, Profile, User } from '../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { IUsers } from '../shared/interfaces';
 export class AuthService {
   private registerPath = environment.apiUrl + 'auth/register';
   private loginPath = environment.apiUrl + 'auth/login';
-  private logoutPath = environment.apiUrl + 'auth/logout';
+
 
   private user$$ = new BehaviorSubject<undefined | null | IUsers>(undefined);
   user$ = this.user$$.asObservable().pipe(
@@ -41,7 +41,6 @@ export class AuthService {
   getToken() {
     return localStorage.getItem('token');
   }
-
   
   isAuthenticated() {
     if (this.getToken()) {

@@ -20,10 +20,15 @@ const userSchema = new mongoose.Schema({
         minLength: 4,
         required: true,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
+    position: {
+        type: String,
+        minLength: 4,
     },
+    department: {
+        type: String,
+        minLength: 4,
+    },
+
     
 }, {timestamps:true});
 

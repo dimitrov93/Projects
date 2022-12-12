@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const User = require('../models/User');
 const userService = require('../services/userService');
 
 router.get('/', async (req,res) => {
@@ -12,15 +13,31 @@ router.get('/', async (req,res) => {
 });
 
 
-router.get('/', async (req,res) => {
-    try {
-        const user = await userService.ById(req.params.id)
-        console.log(user);
+router.get('/:id', async (req,res) => {
+  try {
+    const user = await userService.withId(req.params.id)
         res.status(200).json(user);
       } catch (err) {
+        console.log(err);
         res.status(500).json(err);
       }
 
 });
+
+
+router.put("/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;
