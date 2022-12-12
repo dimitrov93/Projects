@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from './auth/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,20 +9,7 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'Office Board';
 
-  constructor(private authService: AuthService, private router: Router)  {}
+  constructor()  {}
 
-  isAuthenticated(): boolean {
-    return this.authService.isAuthenticated();
-  }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(["/auth/login"]);
-  }
-
-  confirmLogout() {
-    if (confirm("Logout?")) {
-      this.logout();
-    }
-  }
 }
