@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppEmailDirective } from './shared/validators/app-email.directive';
 import { CoreModule } from './core/core.module';
-import { TaskBaordComponent } from './tasks/task-baord/task-baord.component';
 
 
 @NgModule({

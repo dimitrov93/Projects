@@ -8,7 +8,7 @@ const {auth} = require('./middlewares/authMiddleware');
 const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
 const productRoute = require('./routes/product');
-const emailRoute = require('./routes/email');
+const taskRoute = require('./routes/task');
 
 
 app.use(cors())
@@ -18,7 +18,7 @@ app.use(auth)
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
 app.use("/api/products", productRoute);
-app.use("/api/email", emailRoute);
+app.use("/api/tasks", taskRoute);
 
 
 dbInit();
