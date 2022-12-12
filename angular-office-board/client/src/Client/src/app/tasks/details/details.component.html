@@ -1,0 +1,114 @@
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between m-4">
+        <h1 class="h3 mb-0 text-primary"><strong>Task Details</strong></h1>
+    </div>
+</nav>
+<!-- End of Topbar -->
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-4 border-primary">
+                <div class="card-header">
+                    <p class="text-lg" style="display: inline;"><strong>title</strong></p>
+                    <!-- Circle Buttons (Small) -->
+                    <div >
+                        <a  class="btn btn-warning btn-circle btn-sm ml-4 mb-2" title="Edit">
+                            <i class="fa-solid fa-pen-to-square" style="color: white;"></i>
+                        </a>
+                        <a
+                            class="btn btn-danger btn-circle btn-sm ml-2 mb-2" title="Delete">
+                            <i class="fa-solid fa-trash" style="color: white;"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <div></div>
+                    <hr>
+                    <!-- <p>
+                        <small *ngSwitchCase="0" class="text-muted">Status: <strong class="text-primary">To
+                                Do</strong></small>
+                        <small *ngSwitchCase="1" class="text-muted">Status: <strong
+                                class="text-warning">Doing</strong></small>
+                        <small *ngSwitchCase="2" class="text-muted">Status: <strong
+                                class="text-success">Done</strong></small>
+                    </p> -->
+                    <p>
+                        <small class="text-muted">Created On:
+                            <strong>created on</strong>
+                        </small> |
+                        <small class="text-muted">Created By:
+                            <a><strong>user name</strong></a>
+                        </small> <br>
+                        <small class="text-muted">Comments: <strong>comments count</strong></small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-8">
+        <!-- Open Modal -->
+        <a class="btn btn-sm btn-success btn-icon-split ml-3">
+            <span class="icon text-white-50">
+                <i class="fa-solid fa-circle-plus"></i>
+            </span>
+            <span class="text" style="color: white;">Add Comment</span>
+        </a>
+    </div>
+</div>
+<!-- COMMENTS BY TASK -->
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-3 text-center">
+            <h1 class="h3 text-primary"><strong>Comments:</strong></h1>
+        </div>
+        <!-- Border Left Utilities -->
+        <div class="col-lg-8">
+            <div>
+                <div class="card mb-4 py-3 border-left-primary">
+                    <div class="card-body">
+                        <p>content</p>
+                        <p>
+                            <small class="text-muted">Author:
+                                <a
+                                    ><strong>user name</strong></a>
+                            </small> |
+                            <small class="text-muted">Created On:
+                                <strong>...</strong>
+                            </small>
+                        </p>
+                        <!-- Circle Buttons (Small) -->
+                        <div  style="display: inline;">
+                            <a  class="btn btn-warning btn-circle btn-sm ml-2 mt-2"
+                                title="Edit">
+                                <i class="fa-solid fa-pen-to-square" style="color: white;"></i>
+                            </a>
+                            <a 
+                                class="btn btn-danger btn-circle btn-sm ml-2 mt-2" title="Delete">
+                                <i class="fa-solid fa-trash" style="color: white;"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <a  class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fa-solid fa-arrow-down-to-line"></i>
+                                        </span>
+                    <span class="text" style="color: white;">Load More</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
