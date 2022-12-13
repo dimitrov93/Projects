@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppEmailDirective } from './shared/validators/app-email.directive';
 import { CoreModule } from './core/core.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
+    NgbModule,
   ],
   providers: [DashboardComponent],
   bootstrap: [AppComponent]

@@ -25,8 +25,9 @@ export class LoginComponent {
     const data = this.form.value;
     
     this.authService.login(data)
-      .subscribe(info => {                    
-    this.authService.saveToken(info._id);
+      .subscribe(info => {   
+        // {user: info.username, email: info.email, id: info._id}
+    this.authService.saveToken(JSON.stringify({user: info.username, email: info.email, id: info._id}));
         this.router.navigate(['/'])
       })
   }

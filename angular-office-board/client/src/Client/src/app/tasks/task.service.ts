@@ -17,12 +17,20 @@ export class TaskService {
     return this.http.get<Array<Task>>(this.tasksPath);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(this.tasksPath, data);
+  create(data: any, userId: any, userName: any): Observable<any> {
+    return this.http.post(this.tasksPath, {data, userId, userName});
   }
 
   deleteTask(id: number) {
     return this.http.delete(this.tasksPath + `/${id}`);
+  }
+
+  getTaskDetails(id: number): Observable<Task> {
+    return this.http.get<Task>(this.tasksPath + `/${id}`);
+  }
+
+  createComment(id: number, data: any): Observable<any> {
+    return this.http.post<Task>(this.tasksPath + `/comments/${id}`, {id: id, data: data});
   }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Task, User } from '../../shared/interfaces';
 import { TaskService } from '../task.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-task-baord',
@@ -14,10 +15,15 @@ export class TaskBaordComponent implements OnInit {
   doneTasks: Array<Task>;
   currentUser!: User;
 
-  constructor(private taskService: TaskService, private router: Router) {
+  constructor(private taskService: TaskService, private router: Router, private authService: AuthService) {
     this.toDoTasks = new Array<Task>();
     this.doingTasks = new Array<Task>();
     this.doneTasks = new Array<Task>();
+
+    this.authService.getCurrentUser().subscribe((res) => {
+      this.currentUser = res;
+    });
+    
   }
 
   ngOnInit(): void {

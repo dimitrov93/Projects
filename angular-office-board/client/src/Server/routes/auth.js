@@ -13,6 +13,8 @@ router.post('/register', async (req,res) => {
 
     try {
         const savedUser = await newUser.save();
+        const token = await authService.createToken(savedUser);
+        res.cookie(COOKIE_SESSION_NAME, token, {httpOnly: true, sameSite: 'none', maxAge: 24 * 60 * 60 * 1000, secure: true })
         res.status(201).json(savedUser)
     } catch (err) {
         res.status(500).json(err)
@@ -25,11 +27,8 @@ router.post('/login', async (req,res) => {
 
     try {
         const user = await authService.login(email, password);
-
         const token = await authService.createToken(user);
-    
-        console.log(token);
-        res.cookie(COOKIE_SESSION_NAME, token, {httpOnly: true});
+        res.cookie(COOKIE_SESSION_NAME, token, {httpOnly: true, sameSite: 'none', maxAge: 24 * 60 * 60 * 1000, secure: true })
         res.status(200).json(user)
     } catch (error) {
         res.status(500).json(error)

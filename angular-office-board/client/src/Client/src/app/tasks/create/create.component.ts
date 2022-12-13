@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/shared/interfaces';
 import { TaskService } from '../task.service';
 
 
@@ -11,7 +12,9 @@ import { TaskService } from '../task.service';
 })
 export class TaskCreateComponent implements OnInit {
 
-
+  user = localStorage.getItem('token')
+  userId = JSON.parse(this.user as any).id
+  userName = JSON.parse(this.user as any).user
   taskForm: FormGroup;
 
   constructor(
@@ -29,8 +32,7 @@ export class TaskCreateComponent implements OnInit {
   }
 
   create() {
-    
-    this.taskService.create(this.taskForm.value).subscribe(res => {
+    this.taskService.create(this.taskForm.value, this.userId, this.userName).subscribe(res => {
       this.router.navigate(["/tasks"]);
     });
   }

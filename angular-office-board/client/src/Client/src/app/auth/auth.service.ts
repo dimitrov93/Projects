@@ -10,6 +10,7 @@ import { IUsers, Profile, User } from '../shared/interfaces';
 export class AuthService {
   private registerPath = environment.apiUrl + 'auth/register';
   private loginPath = environment.apiUrl + 'auth/login';
+  private currentUser = (userId: any) => environment.apiUrl + 'users/' + userId;
 
 
   private user$$ = new BehaviorSubject<undefined | null | IUsers>(undefined);
@@ -56,9 +57,9 @@ export class AuthService {
     }
   }
   
-  getAllUsers(): Observable<IUsers[]> {
-    const url = 'https://jsonplaceholder.typicode.com/users';
-
-    return this.http.get<IUsers[]>(url)
+  getCurrentUser(): Observable<User> {
+    let user = localStorage.getItem('token')
+    let userId = JSON.parse(user as any).id
+    return this.http.get<User>(this.currentUser(userId))
   }
 }

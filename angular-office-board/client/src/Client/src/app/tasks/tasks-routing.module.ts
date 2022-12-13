@@ -17,9 +17,11 @@ const routes: Routes = [
   },
 
   {
-    path: 'details',
+    path: ':id',
     component: DetailsComponent
   },
+
+  
 
 ];
 
