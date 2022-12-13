@@ -26,9 +26,10 @@ export class UserComponent implements OnInit {
 
   fetchUserData() {
     let theUserId = localStorage.getItem('token');
-    this.authService.getCurrentUser(theUserId).subscribe((res) => {
+    let userId = JSON.parse(theUserId as any).id
+    
+    this.authService.getCurrentUser(userId).subscribe((res) => {
       this.profile = res;
-      console.log(this.profile);
     });
   }
 

@@ -33,5 +33,8 @@ export class TaskService {
     return this.http.post<Task>(this.tasksPath + `/comments/${id}`, {id: id, data: data});
   }
 
+  changeStatus(id: any, status: any) {
+    return this.http.put(this.tasksPath + `/${id}`, {'status ': status});
+  }
 
 }

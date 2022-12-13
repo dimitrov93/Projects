@@ -52,5 +52,14 @@ export class TaskBaordComponent implements OnInit {
     }
   }
 
+  changeStatus(id: number, status: number) {
+
+    this.taskService.changeStatus(id, status).subscribe(res => {
+      console.log(res);
+      
+      this.fetchTasks();
+    });
+  }
+
 
 }

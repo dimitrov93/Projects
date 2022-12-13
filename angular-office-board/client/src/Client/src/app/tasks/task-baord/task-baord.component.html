@@ -23,18 +23,24 @@
           <div class="card mb-4 py-3 border-left-primary pop" cdkDrag>
             <textarea hidden id="taskId">{{ task._id }}</textarea>
             <div class="card-body text-center">
-              <p >
-                <a><strong routerLink="/tasks/{{task._id}}">{{ task.title }}</strong></a>
+              <p>
+                <a
+                  ><strong routerLink="/tasks/{{ task._id }}">{{
+                    task.title
+                  }}</strong></a
+                >
               </p>
               <p>
                 <small class="text-muted"
                   >Created On:
-                  <strong>{{ task.createdAt | date:'dd.MM.yyyy'}}</strong>
+                  <strong>{{ task.createdAt | date : "dd.MM.yyyy" }}</strong>
                 </small>
                 |
                 <small class="text-muted"
                   >Created By:
-                  <a><strong>{{ task.userName }}</strong></a>
+                  <a
+                    ><strong>{{ task.userName }}</strong></a
+                  >
                 </small>
                 <br />
                 <small class="text-muted"
@@ -45,19 +51,28 @@
               <a
                 class="btn btn-primary btn-circle btn-sm ml-4"
                 title="See Details"
-                routerLink="/tasks/{{task._id}}"
+                routerLink="/tasks/{{ task._id }}"
               >
                 <i class="fa-solid fa-info"></i>
               </a>
-              <div *ngIf="currentUser._id == task?.userId"   style="display: inline">
+              <div
+                *ngIf="currentUser._id == task?.userId"
+                style="display: inline"
+              >
                 <a class="btn btn-warning btn-circle btn-sm ml-4" title="Edit">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a (click)="confirmDelete(task.title, task._id)" class="btn btn-danger btn-circle btn-sm ml-4" title="Delete" routerLink="/tasks/{{task._id}}">
+                <a
+                  (click)="confirmDelete(task.title, task._id)"
+                  class="btn btn-danger btn-circle btn-sm ml-4"
+                  title="Delete"
+                  routerLink="/tasks/{{ task._id }}"
+                >
                   <i class="fa-solid fa-trash"></i>
                 </a>
               </div>
               <a
+                (click)="changeStatus(task._id, 2)"
                 class="btn btn-secondary btn-circle ml-4"
                 title="Move to Doing"
               >
@@ -84,17 +99,21 @@
             <textarea hidden id="taskId">{{ task._id }}</textarea>
             <div class="card-body text-center">
               <p>
-                <a><strong>{{ task.title }}</strong></a>
+                <a
+                  ><strong>{{ task.title }}</strong></a
+                >
               </p>
               <p>
                 <small class="text-muted"
                   >Created On:
-                  <strong>{{ task.createdAt | date:'dd.MM.yyyy'  }}</strong>
+                  <strong>{{ task.createdAt | date : "dd.MM.yyyy" }}</strong>
                 </small>
                 |
                 <small class="text-muted"
                   >Created By:
-                  <a><strong>{{ task.userName }}</strong></a>
+                  <a
+                    ><strong>{{ task.userName }}</strong></a
+                  >
                 </small>
                 <br />
                 <small class="text-muted"
@@ -105,6 +124,7 @@
               <a
                 class="btn btn-secondary btn-circle ml-4"
                 title="Move to TO DO"
+                (click)="changeStatus(task._id, 1)"
               >
                 <i
                   class="fa-sharp fa-solid fa-arrow-left"
@@ -121,12 +141,17 @@
                 <a class="btn btn-warning btn-circle btn-sm ml-4" title="Edit">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a (click)="confirmDelete(task.title, task._id)" class="btn btn-danger btn-circle btn-sm ml-4" title="Delete">
+                <a
+                  (click)="confirmDelete(task.title, task._id)"
+                  class="btn btn-danger btn-circle btn-sm ml-4"
+                  title="Delete"
+                >
                   <i class="fa-solid fa-trash"></i>
                 </a>
               </div>
               <a class="btn btn-secondary btn-circle ml-4" title="Move to DONE">
                 <i
+                  (click)="changeStatus(task._id, 3)"
                   class="fa-sharp fa-solid fa-arrow-right"
                   style="color: white"
                 ></i>
@@ -149,17 +174,21 @@
             <textarea hidden id="taskId">{{ task._id }}</textarea>
             <div class="card-body text-center">
               <p>
-                <a><strong>{{ task.title }}</strong></a>
+                <a
+                  ><strong>{{ task.title }}</strong></a
+                >
               </p>
               <p>
                 <small class="text-muted"
                   >Created On:
-                  <strong>{{ task.createdAt | date:'dd.MM.yyyy'  }}</strong>
+                  <strong>{{ task.createdAt | date : "dd.MM.yyyy" }}</strong>
                 </small>
                 |
                 <small class="text-muted"
                   >Created By:
-                  <a><strong>{{ task.userName }}</strong></a>
+                  <a
+                    ><strong>{{ task.userName }}</strong></a
+                  >
                 </small>
                 <br />
                 <small class="text-muted"
@@ -168,14 +197,16 @@
               </p>
               <!-- Circle Buttons (Small) -->
               <a
+                (click)="changeStatus(task._id, 1)"
                 class="btn btn-secondary btn-circle ml-4"
                 title="Move to Doing"
               >
                 <i
-                  class="fa-sharp fa-solid fa-arrow-right"
+                  class="fa-sharp fa-solid fa-arrow-left"
                   style="color: white"
                 ></i>
               </a>
+
               <a
                 class="btn btn-primary btn-circle btn-sm ml-4"
                 title="See Details"
@@ -186,7 +217,11 @@
                 <a class="btn btn-warning btn-circle btn-sm ml-4" title="Edit">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a (click)="confirmDelete(task.title, task._id)" class="btn btn-danger btn-circle btn-sm ml-4" title="Delete">
+                <a
+                  (click)="confirmDelete(task.title, task._id)"
+                  class="btn btn-danger btn-circle btn-sm ml-4"
+                  title="Delete"
+                >
                   <i class="fa-solid fa-trash"></i>
                 </a>
               </div>
