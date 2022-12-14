@@ -37,4 +37,8 @@ export class TaskService {
     return this.http.put(this.tasksPath + `/${id}`, {'status ': status});
   }
 
+  editTask(id: any, data: any) {
+    return this.http.put(this.tasksPath + `/${id}/edit`, data);
+  }
+
 }

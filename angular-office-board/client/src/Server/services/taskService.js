@@ -5,4 +5,5 @@ exports.delete = (dataId) => Task.deleteOne({_id: dataId})
 exports.withId = (taskId) => Task.findById(taskId)
 exports.create = (taskData) => Task.create(taskData)
 exports.addComment = (id, data) => Task.updateOne({_id: id}, {$push: {comments: data}})
-exports.changeStatus = (id, data) => Task.updateOne({_id: id}, {$set: {status: data}})
+exports.changeStatus = (id, data) => Task.updateOne({_id: id}, {$set:data} ,{ new: true });
+exports.update = (id, data) => Task.findByIdAndUpdate({_id: id},{$set: data},{ new: true })

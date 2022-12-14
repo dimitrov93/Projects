@@ -8,6 +8,11 @@ import { AuthService } from '../../auth/auth.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent  {
+  toggled = false;
+
+  onToggle() {
+    this.toggled = !this.toggled;
+  }
 
   constructor(private authService: AuthService, private router: Router) { }
 

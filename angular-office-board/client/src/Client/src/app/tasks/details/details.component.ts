@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { map, mergeMap } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User, Task } from 'src/app/shared/interfaces';
 import { TaskService } from '../task.service';
@@ -23,7 +21,6 @@ export class DetailsComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalService: NgbModal
   ) {
     this.authService.getCurrentUser().subscribe((res) => {
       this.currentUser = res;
