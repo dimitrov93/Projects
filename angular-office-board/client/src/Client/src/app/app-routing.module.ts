@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
   },
   {
+    path: 'messages',
+    loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule),
+  },
+  {
     path: '404',
     component: PageNotFoundComponent
   },

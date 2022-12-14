@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { IUsers } from '../../shared/interfaces';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { appEmailValidator } from 'src/app/shared/validators/app-email-validator';

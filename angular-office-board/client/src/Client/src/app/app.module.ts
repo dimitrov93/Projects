@@ -10,6 +10,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppEmailDirective } from './shared/validators/app-email.directive';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './auth/auth.service';
+import { TaskService } from './tasks/task.service';
+import { ProfileService } from './auth/profile/profile.service';
 
 
 @NgModule({
@@ -25,7 +28,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoreModule,
     NgbModule,
   ],
-  providers: [DashboardComponent],
+  providers: [
+    DashboardComponent,
+    AuthService,
+    TaskService,
+    ProfileService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

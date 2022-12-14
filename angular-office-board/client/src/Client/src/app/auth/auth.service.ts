@@ -12,27 +12,15 @@ export class AuthService {
   private loginPath = environment.apiUrl + 'auth/login';
   private currentUser = (userId: any) => environment.apiUrl + 'users/' + userId;
 
-
-  private user$$ = new BehaviorSubject<undefined | null | IUsers>(undefined);
-  user$ = this.user$$.asObservable().pipe(
-    filter((val): val is IUsers | null => val !== undefined)
-  );
-
-  user: IUsers | null = null;
-
-
   constructor(private http: HttpClient) { }
 
 
   register(data: any): Observable<any> {
     return this.http.post<IUsers>(this.registerPath,data)
-      .pipe(tap(user => this.user$$.next(user)))
   }
 
   login(data: any): Observable<any> {
     return this.http.post<any>(this.loginPath, data)
-    .pipe(tap(user => this.user$$.next(user)));;
-
   }
 
   saveToken(token: any) {
