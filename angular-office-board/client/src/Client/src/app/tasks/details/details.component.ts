@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { User, Task } from 'src/app/shared/interfaces';
+import { User, Task, Comment } from 'src/app/shared/interfaces';
 import { TaskService } from '../task.service';
 
 @Component({
@@ -15,17 +15,22 @@ export class DetailsComponent implements OnInit {
   currentUser!: User;
   params!: number;
   show = 3;
+  comments!: Array<Comment>;
+
 
   constructor(
     private taskService: TaskService,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
+
   ) {
     this.authService.getCurrentUser().subscribe((res) => {
       this.currentUser = res;
       this.params = this.route.snapshot.params['id'];
     });
+    this.comments = new Array<Comment>();
+
   }
 
   ngOnInit(): void {
@@ -38,15 +43,16 @@ export class DetailsComponent implements OnInit {
       const id = params['id'];
       localStorage.setItem('task', id);
       this.taskService.getTaskDetails(id).subscribe((res) => {
+        console.log(res.comments);
+        
+        this.comments = res.comments
         this.task = res;
       });
     });
   }
 
   createComments() {
-    this.taskService.createComment(this.params, {user: "Stefan", comments: 'Hello'}).subscribe(res => {
-      console.log(res);
-      
+    this.taskService.createComment(this.params, {user: "Stefan", comments: 'Hello'}).subscribe(res => {      
     })
   }
 
@@ -67,5 +73,9 @@ export class DetailsComponent implements OnInit {
     } else {
       return
     }
+  }
+
+  open() {
+    this.router.navigate([`tasks/comments/${this.params}/edit`]);
   }
 }

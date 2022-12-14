@@ -1,1 +1,88 @@
-<p>edit works!</p>
+Begin Page Content
+<div class="container-fluid mt-4">
+  <div class="card o-hidden border-0 shadow-lg">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900">Edit Message</h1>
+              <p class="mb-4">
+                <small>Created On: <strong>created on</strong></small>
+              </p>
+            </div>
+            <form #editForm="ngForm" (ngSubmit)="handleUpdate(editForm)" name="editForm" *ngIf="oldMsg.content">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" name="title" type="text" required [(ngModel)]="oldMsg.title" ngDefaultControl ngModel/>
+                <!-- #titleInput="ngModel" [(ngModel)]="oldMsg.title" [ngModelOptions]="{standalone: true}" ngDefaultControl -->
+                <!-- <input
+                  type="text"
+                  class="form-control"
+                  formControlName="title"
+                  [(ngModel)]="oldMsg.content"
+                  ngDefaultControl
+                  ngModel="msgInput"
+                /> -->
+              </div>
+
+              <!-- <ng-container *ngIf="form.get('title')?.touched">
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('title')?.errors?.['required']"
+                >
+                  Title is required!
+                </div>
+              </ng-container> -->
+
+              <div class="form-group">
+                <label for="content">Content</label>
+                <!-- <ckeditor [editor]="Editor" formControlName="Content"></ckeditor> -->
+                <textarea #contentInput="ngModel" required name="content" type="text" class="form-control"  [(ngModel)]="oldMsg.content" ngDefaultControl ngModel></textarea>
+              </div>
+                <ng-container *ngIf="contentInput?.touched">
+                    <div class="alert alert-danger" *ngIf="contentInput.errors?.['required']">
+                        Content is required!
+                      </div>
+                    </ng-container>
+                <!-- <div class="alert alert-danger" *ngIf="contentInput?.errors?.['required']">
+                  Content is required!
+                </div> -->
+              <!-- <ng-container *ngIf="form.get('content')?.touched">
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('content')?.errors?.['required']"
+                >
+                  Content is required!
+                </div>
+              </ng-container> -->
+              {{editForm.value | json}}
+              <div class="form-group">
+                <input hidden type="number" class="form-control" />
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-user btn-block my-4"
+                  >
+                    Save changes
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="btn btn-outline-danger btn-user btn-block my-4"
+                    routerLink="/messages"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

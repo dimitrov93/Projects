@@ -61,13 +61,13 @@
             <span class="icon text-white-50">
                 <i class="fa-solid fa-circle-plus"></i>
             </span>
-            <span class="text" style="color: white;">Add Comment</span>
+            <span class="text" style="color: white;" (click)="open()" >Add Comment</span>
         </a>
     </div>
 </div>
 <!-- COMMENTS BY TASK -->
 <!-- Begin Page Content -->
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="comments.length > 0">
     <!-- Content Row -->
     <div class="row">
         <div class="col-lg-3 text-center">
@@ -75,17 +75,18 @@
         </div>
         <!-- Border Left Utilities -->
         <div class="col-lg-8">
-            <div>
+            <div *ngFor="let comment of comments">
                 <div class="card mb-4 py-3 border-left-primary">
                     <div class="card-body">
-                        <p>content</p>
+                        {{comment | json}}
+                        <p>{{comment.content }}</p>
                         <p>
                             <small class="text-muted">Author:
                                 <a
-                                    ><strong>user name</strong></a>
+                                    ><strong>{{comment.userName}}</strong></a>
                             </small> |
                             <small class="text-muted">Created On:
-                                <strong>...</strong>
+                                <strong>{{comment.date | date: 'dd.MM.yyy hh:mm'}}</strong>
                             </small>
                         </p>
                         <!-- Circle Buttons (Small) -->

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Task } from '../shared/interfaces';
+import { Comment, Task } from '../shared/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +29,6 @@ export class TaskService {
     return this.http.get<Task>(this.tasksPath + `/${id}`);
   }
 
-  createComment(id: number, data: any): Observable<any> {
-    return this.http.post<Task>(this.tasksPath + `/comments/${id}`, {id: id, data: data});
-  }
-
   changeStatus(id: any, status: any) {
     return this.http.put(this.tasksPath + `/${id}`, status);
   }
@@ -40,5 +36,15 @@ export class TaskService {
   editTask(id: any, data: any) {
     return this.http.put(this.tasksPath + `/${id}/edit`, data);
   }
+
+  // COMMENTS
+
+  createComment(id: number, data: any): Observable<any> {
+    return this.http.post<Comment>(this.tasksPath + `/comments/${id}/edit`, {id: id, data: data});
+  }
+
+  // getCommentDetails(id: number): Observable<Comment> {
+  //   return this.http.get<Comment>(this.tasksPath + `/${id}`);
+  // }
 
 }

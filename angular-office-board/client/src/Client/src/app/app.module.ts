@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth/auth.service';
 import { TaskService } from './tasks/task.service';
 import { ProfileService } from './auth/profile/profile.service';
+import { AuthGuardService } from './shared/guards/auth.activate';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ProfileService } from './auth/profile/profile.service';
     AuthService,
     TaskService,
     ProfileService,
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

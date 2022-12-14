@@ -7,6 +7,7 @@ import { TaskCreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommentCreateComponent } from './comment-create/comment-create.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TaskCreateComponent,
     DetailsComponent,
     EditComponent,
+    CommentCreateComponent,
   ],
   imports: [
     CommonModule,

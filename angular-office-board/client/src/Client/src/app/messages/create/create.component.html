@@ -7,32 +7,31 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900">Edit Message</h1>
-                            <p class="mb-4"><small>Created On: <strong>created on</strong></small>
-                            </p>
+                            <h1 class="h4 text-gray-900 mb-4">Create New Message</h1>
                         </div>
-                        <form class="user" >
+                        <form class="user" method="post" [formGroup]='msgForm' (ngSubmit)='create()'>
                             <div class="form-group">
                                 <label>Title</label>
                                 <input type="text" class="form-control" formControlName="title">
                             </div>
                             <!-- <div *ngIf="title?.touched && title?.errors?.required" class="alert alert-danger">
                                 Title is required!
-                            </div> -->
+                            </div>                             -->
                             <div class="form-group">
                                 <label>Content</label>
                                 <!-- <ckeditor [editor]="Editor" formControlName="Content"></ckeditor> -->
-                                <textarea formControlName="content"></textarea>
+                
+                                    <textarea type="text" class="form-control" formControlName="content"></textarea>
+    
+                    
                             </div>
                             <!-- <div *ngIf="content?.touched && content?.errors?.required" class="alert alert-danger">
                                 Content is required!
                             </div> -->
-                            <div class="form-group">
-                                <input hidden type="number" class="form-control" formControlName="Id">
-                            </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <button type="submit" class="btn btn-success btn-user btn-block my-4">Save changes</button>
+                                    <button type="submit"
+                                        class="btn btn-success btn-user btn-block my-4">Create</button>
                                 </div>
                                 <div class="col-6">
                                     <button class="btn btn-outline-danger btn-user btn-block my-4"

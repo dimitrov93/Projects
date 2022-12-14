@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuardService } from './shared/guards/auth.activate';
 
 const routes: Routes = [
   {
@@ -16,10 +17,12 @@ const routes: Routes = [
   },
   {
     path: 'tasks',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
   },
   {
     path: 'messages',
+    canActivate: [AuthGuardService],
     loadChildren: () => import('./messages/messages.module').then(m => m.MessagesModule),
   },
   {

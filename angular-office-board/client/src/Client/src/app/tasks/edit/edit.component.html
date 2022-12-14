@@ -28,7 +28,8 @@
 
                                     <label>Description</label>
                                 </div>
-                                <textarea formControlName="description"></textarea>>
+                                <textarea type="text" class="form-control" formControlName="description"></textarea>
+
                             </div>
                             <ng-container *ngIf="form.get('description')?.touched">
                                 <div class="alert alert-danger" *ngIf="form.get('description')?.errors?.['required']">
