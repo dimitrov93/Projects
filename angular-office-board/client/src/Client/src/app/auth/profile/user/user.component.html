@@ -15,12 +15,32 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User Info</div>
                         <div class="h5 my-3 font-weight-bold text-gray-800">{{profile?.username}}</div>
-                        <p class="text-sm">
-                            Name: <strong>{{profile?.username}}</strong><br>
-                            Email: <strong>{{profile?.email}}</strong><br>
-                            Position: <strong>{{profile?.position}}</strong><br>
-                            Department: <strong>{{profile?.department}}</strong>
-                        </p>
+                        <div class="userDetails">
+                            <p class="text-sm">
+                                Name: <strong>{{profile?.username}}</strong><br>
+                                Email: <strong>{{profile?.email}}</strong><br>
+                                Position: <strong>{{profile?.position}}</strong><br>
+                                Department: <strong>{{profile?.department}}</strong><br>
+                                Tasks: <strong>{{myTasks.length}}</strong><br>
+                                Messages: <strong>{{myMsgs.length}}</strong>
+                            </p>
+                            <p>
+                                Tasks: <strong *ngFor="let task of myTasks; let i=index">
+                                    <br>
+
+                                    <a routerLink="/tasks/{{task._id}}" >{{task.title}}{{i === myTasks.length - 1 ? '' : ", "}}</a>
+                                    
+                                </strong>
+                            </p>
+
+                            <p>
+                                Messages: <strong *ngFor="let msg of myMsgs; let i=index">
+                                    <br>
+                                    {{msg.title}}{{i === myMsgs.length - 1 ? '' : ", "}}
+                                </strong>
+                            </p>
+                        </div>
+
                         <!-- Circle Buttons (Small) -->
                         <div>
                             <a routerLink="/auth/profile/edit" class="btn btn-outline-warning btn-circle ml-4 mb-2"

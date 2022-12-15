@@ -8986,3 +8986,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.userDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.userDetails a {
+  color: inherit;
+  text-decoration: none;
+
+}

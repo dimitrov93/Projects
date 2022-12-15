@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentCreateComponent } from './comment-create/comment-create.component';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 
-
 @NgModule({
   declarations: [
     TaskBaordComponent,
@@ -25,7 +24,7 @@ import { DragDropModule} from '@angular/cdk/drag-drop';
     TasksRoutingModule,
     NgbModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
   ]
 })
 export class TasksModule { }
