@@ -14,7 +14,7 @@ import { TaskService } from '../task.service';
 export class EditComponent implements OnInit {
   params!: number;
   currentUser!: User;
-  task!: Task
+  task!: Task | undefined
 
   // form = this.fb.group({
   //   title: ['', [Validators.required]],

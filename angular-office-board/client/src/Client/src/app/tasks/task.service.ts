@@ -21,7 +21,7 @@ export class TaskService {
     return this.http.post(this.tasksPath, {data, userId, userName});
   }
 
-  deleteTask(id: number) {
+  deleteTask(id: string | number) {
     return this.http.delete(this.tasksPath + `/${id}`);
   }
 

@@ -13,8 +13,8 @@ import { MsgService } from '../messages.service';
 export class EditComponent implements OnInit {
   params!: number;
   currentUser!: User;
-  msg!: Message
-  oldMsg!: Message
+  msg!: Message 
+  oldMsg!: Message | undefined
   
 
 

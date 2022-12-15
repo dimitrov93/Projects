@@ -14,6 +14,8 @@ import { AuthService } from './auth/auth.service';
 import { TaskService } from './tasks/task.service';
 import { ProfileService } from './auth/profile/profile.service';
 import { AuthGuardService } from './shared/guards/auth.activate';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { AuthGuardService } from './shared/guards/auth.activate';
     HttpClientModule,
     CoreModule,
     NgbModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [
     DashboardComponent,

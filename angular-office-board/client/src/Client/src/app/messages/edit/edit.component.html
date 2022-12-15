@@ -8,23 +8,36 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900">Edit Message</h1>
               <p class="mb-4">
-                <small>Created On: <strong>{{oldMsg.createdAt | date: 'dd.MM.yyyy'}}</strong></small>
+                <small
+                  >Created On:
+                  <strong>{{
+                    oldMsg?.createdAt | date : "dd.MM.yyyy"
+                  }}</strong></small
+                >
               </p>
             </div>
-            <form #editForm="ngForm" (ngSubmit)="handleUpdate(editForm)" name="editForm" *ngIf="oldMsg.content">
+            <form
+              #editForm="ngForm"
+              (ngSubmit)="handleUpdate(editForm)"
+              name="editForm"
+              *ngIf="oldMsg"
+            >
               <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" name="title" type="text" required [(ngModel)]="oldMsg.title" ngDefaultControl ngModel/>
-                <!-- #titleInput="ngModel" [(ngModel)]="oldMsg.title" [ngModelOptions]="{standalone: true}" ngDefaultControl -->
-                <!-- <input
-                  type="text"
+                <input
                   class="form-control"
-                  formControlName="title"
-                  [(ngModel)]="oldMsg.content"
+                  name="title"
+                  type="text"
+                  required
+                  [(ngModel)]="oldMsg.title"
                   ngDefaultControl
-                  ngModel="msgInput"
-                /> -->
+                  ngModel
+                  #titleInput="ngModel"
+                />
               </div>
+              <ng-container *ngIf="titleInput.errors?.['required']">
+                <div class="alert alert-danger">Title is required!</div>
+              </ng-container>
 
               <!-- <ng-container *ngIf="form.get('title')?.touched">
                 <div
@@ -36,26 +49,25 @@
               </ng-container> -->
 
               <div class="form-group">
-                <label for="content">Content</label>
-                <!-- <ckeditor [editor]="Editor" formControlName="Content"></ckeditor> -->
-                <textarea #contentInput="ngModel" required name="content" type="text" class="form-control"  [(ngModel)]="oldMsg.content" ngDefaultControl ngModel></textarea>
-              </div>
-                <ng-container *ngIf="contentInput?.touched">
-                    <div class="alert alert-danger" *ngIf="contentInput.errors?.['required']">
-                        Content is required!
-                      </div>
-                    </ng-container>
-                <!-- <div class="alert alert-danger" *ngIf="contentInput?.errors?.['required']">
-                  Content is required!
-                </div> -->
-              <!-- <ng-container *ngIf="form.get('content')?.touched">
-                <div
-                  class="alert alert-danger"
-                  *ngIf="form.get('content')?.errors?.['required']"
-                >
-                  Content is required!
+                <div>
+                  <label for="content">Content</label>
                 </div>
-              </ng-container> -->
+                <textarea
+                required
+                name="content"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="oldMsg.content"
+                  ngDefaultControl
+                  ngModel
+                  #descriptionInput="ngModel"
+                ></textarea>
+              </div>
+
+              <ng-container *ngIf="descriptionInput.errors?.['required']">
+                <div class="alert alert-danger">Title is required!</div>
+              </ng-container>
+
               <div class="form-group">
                 <input hidden type="number" class="form-control" />
               </div>

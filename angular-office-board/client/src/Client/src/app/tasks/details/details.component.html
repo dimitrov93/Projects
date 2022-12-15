@@ -29,14 +29,14 @@
 
                     <div>{{task?.description}}</div>
                     <hr>
-                    <!-- <p>
-                        <small *ngSwitchCase="0" class="text-muted">Status: <strong class="text-primary">To
+                    <p [ngSwitch]="task?.status">
+                        <small *ngSwitchCase="1" class="text-muted">Status: <strong class="text-primary">To
                                 Do</strong></small>
-                        <small *ngSwitchCase="1" class="text-muted">Status: <strong
-                                class="text-warning">Doing</strong></small>
                         <small *ngSwitchCase="2" class="text-muted">Status: <strong
+                                class="text-warning">Doing</strong></small>
+                        <small *ngSwitchCase="3" class="text-muted">Status: <strong
                                 class="text-success">Done</strong></small>
-                    </p> -->
+                    </p>
                     <p>
                         <!-- <button (click)="createComments()"></button> -->
                         <small class="text-muted">Created On:

@@ -8,6 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentCreateComponent } from './comment-create/comment-create.component';
+import { DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CommentCreateComponent } from './comment-create/comment-create.componen
     ReactiveFormsModule,
     TasksRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ]
 })
 export class TasksModule { }

@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit {
     private route: ActivatedRoute,
 
   ) {
-    this.authService.getCurrentUser().subscribe((res) => {
+    this.authService.getCurrentUser().subscribe((res) => {      
       this.currentUser = res;
       this.params = this.route.snapshot.params['id'];
     });
@@ -42,7 +42,8 @@ export class DetailsComponent implements OnInit {
       
       const id = params['id'];
       localStorage.setItem('task', id);
-      this.taskService.getTaskDetails(id).subscribe((res) => {        
+      this.taskService.getTaskDetails(id).subscribe((res) => {    
+                
         this.comments = res.comments
         this.task = res;
       });
