@@ -27,8 +27,7 @@ export class TaskBaordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchTasks();
-
+    this.fetchTasks();    
   }
 
   fetchTasks() {
@@ -36,7 +35,7 @@ export class TaskBaordComponent implements OnInit {
       this.toDoTasks = res.filter((x) => x.status == 1);
       this.doingTasks = res.filter((x) => x.status == 2);
       this.doneTasks = res.filter((x) => x.status == 3);
-    });
+    });    
   };
 
   

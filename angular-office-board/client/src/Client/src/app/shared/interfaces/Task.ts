@@ -8,6 +8,5 @@ export interface Task {
     createdAt: Date,
     userId: string | number,
     userName: string,
-    commentsCount: number,
     comments: [Comment]
 }

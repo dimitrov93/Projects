@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TaskBaordComponent } from './task-baord/task-baord.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TasksRoutingModule } from './tasks-routing.module';
 import { TaskCreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
@@ -22,7 +22,8 @@ import { CommentCreateComponent } from './comment-create/comment-create.componen
     CommonModule,
     ReactiveFormsModule,
     TasksRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ]
 })
 export class TasksModule { }

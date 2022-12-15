@@ -15,6 +15,8 @@ export class BoardComponent implements OnInit {
   userName = JSON.parse(this.user as any).user;
   messages: Array<Message>;
   currentUser!: User;
+  show = 3;
+  filterTerm!: string;
 
 
   constructor(

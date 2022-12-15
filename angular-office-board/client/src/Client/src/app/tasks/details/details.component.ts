@@ -42,20 +42,12 @@ export class DetailsComponent implements OnInit {
       
       const id = params['id'];
       localStorage.setItem('task', id);
-      this.taskService.getTaskDetails(id).subscribe((res) => {
-        console.log(res.comments);
-        
+      this.taskService.getTaskDetails(id).subscribe((res) => {        
         this.comments = res.comments
         this.task = res;
       });
     });
   }
-
-  createComments() {
-    this.taskService.createComment(this.params, {user: "Stefan", comments: 'Hello'}).subscribe(res => {      
-    })
-  }
-
   
   editTask(id: any) {
     this.router.navigate([`tasks/${id}/edit`]);

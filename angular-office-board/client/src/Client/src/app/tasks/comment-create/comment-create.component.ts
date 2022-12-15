@@ -46,9 +46,9 @@ export class CommentCreateComponent implements OnInit {
   createComments() {    
     
     this.taskService
-      .createComment(this.params, { userName: this.userName, content: this.msgForm.value.content, date: this.currentDate })
+      .createComment(this.params, { userName: this.userName, content: this.msgForm.value.content, date: this.currentDate, userId: this.userId })
       .subscribe((res) => {
-        console.log(res);
+        this.router.navigate([`/tasks/${this.params}`]);
       });
   }
 }

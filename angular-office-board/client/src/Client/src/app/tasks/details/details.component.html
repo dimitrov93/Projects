@@ -45,7 +45,8 @@
                         <small class="text-muted">Created By:
                             <a><strong>{{task?.userName}}</strong></a>
                         </small> <br>
-                        <small class="text-muted">Comments: <strong>{{task?.commentsCount}}</strong></small>
+                        
+                        <small class="text-muted">Comments: <strong>{{comments.length | json}}</strong></small>
                     </p>
                 </div>
             </div>
@@ -74,11 +75,11 @@
             <h1 class="h3 text-primary"><strong>Comments:</strong></h1>
         </div>
         <!-- Border Left Utilities -->
+    
         <div class="col-lg-8">
-            <div *ngFor="let comment of comments">
+            <div *ngFor="let comment of comments|slice:0:show">
                 <div class="card mb-4 py-3 border-left-primary">
                     <div class="card-body">
-                        {{comment | json}}
                         <p>{{comment.content }}</p>
                         <p>
                             <small class="text-muted">Author:
@@ -90,7 +91,7 @@
                             </small>
                         </p>
                         <!-- Circle Buttons (Small) -->
-                        <div  style="display: inline;">
+                        <div  *ngIf="currentUser._id == comment.userId"  style="display: inline;">
                             <a  class="btn btn-warning btn-circle btn-sm ml-2 mt-2"
                                 title="Edit">
                                 <i class="fa-solid fa-pen-to-square" style="color: white;"></i>
@@ -104,7 +105,7 @@
                 </div>
             </div>
             <div class="mb-4">
-                <a  class="btn btn-primary btn-icon-split">
+                <a *ngIf="show<comments.length" (click)="show = show + 3"  class="btn btn-primary btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fa-solid fa-arrow-down-to-line"></i>
                                         </span>

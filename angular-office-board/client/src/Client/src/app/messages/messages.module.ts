@@ -7,6 +7,9 @@ import { BoardComponent } from './board/board.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MessagesRoutingModule } from './messages-routing.module';
+import {Ng2SearchPipeModule} from 'ng2-search-filter'
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { MessagesRoutingModule } from './messages-routing.module';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    MessagesRoutingModule
+    MessagesRoutingModule,
+    Ng2SearchPipeModule
   ]
 })
 export class MessagesModule { }

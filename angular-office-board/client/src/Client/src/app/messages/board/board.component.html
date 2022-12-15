@@ -9,10 +9,10 @@
 <!-- Begin Page Content -->
 <div class="container-fluid mt-4">
     <div class="form-group">
-        <input type="text" class="form-control form-control-lg" placeholder="Search...">
+        <input type="text" class="form-control form-control-lg" placeholder="Search..." [(ngModel)]="filterTerm">
     </div>
     <div class="row">
-        <div class="col-lg-12" *ngFor="let msg of messages">
+        <div class="col-lg-12" *ngFor="let msg of (messages|filter:filterTerm).slice(0, show)">
             <!-- Basic Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -41,9 +41,8 @@
                 </div>
             </div>
         </div>
-        <div class="mb-4 ml-4">
-            <a
-                class="btn btn-primary btn-icon-split">
+        <div *ngIf="show<((messages|filter:filterTerm).length)" (click)="show = show + 3" class="mb-4 ml-4">
+            <a class="btn btn-primary btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fa-solid fa-arrow-down-to-line"></i>
                 </span>

@@ -9,7 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Office Board';
 
-  constructor()  {}
+  constructor()  {
+    // localStorage.clear();
+  }
 
 
 }

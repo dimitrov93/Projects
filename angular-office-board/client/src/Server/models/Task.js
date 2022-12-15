@@ -19,10 +19,6 @@ const taskSchema = new mongoose.Schema(
     userName: {
       type: String
     },
-    commentsCount: {
-      type: Number,
-      default: 0
-    },
     comments: {
       type: [],
       default: []

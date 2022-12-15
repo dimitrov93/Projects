@@ -12,38 +12,39 @@
                             <p class="mb-4"><small>Created On: <strong>{{task.createdAt | date: 'dd.MM.yyyy hh:mm'}}</strong></small>
                             </p>
                         </div>
-                        <form class="user" [formGroup]='form'>
+                        {{task | json}}
+                        <form class="user"  #editForm="ngForm" (ngSubmit)="handleUpdate(editForm)" name="editForm" *ngIf="task">
                             <div class="form-group">
                                 <label>Title</label>
-                                
-                                <input type="text" class="form-control" formControlName="title">
+                            
+                                <input class="form-control" name="title" type="text"     [(ngModel)]="task.title" required  ngDefaultControl ngModel>
                             </div>
-                            <ng-container *ngIf="form.get('title')?.touched">
+                            <!-- <ng-container *ngIf="form.get('title')?.touched">
                                 <div class="alert alert-danger" *ngIf="form.get('title')?.errors?.['required']">
                                     Title is required!
                                 </div>
-                            </ng-container>
+                            </ng-container> -->
                             <div class="form-group">
                                 <div>
 
                                     <label>Description</label>
                                 </div>
-                                <textarea type="text" class="form-control" formControlName="description"></textarea>
+                                <textarea type="text" class="form-control" name="description"     [(ngModel)]="task.description" required  ngDefaultControl ngModel></textarea>
 
                             </div>
-                            <ng-container *ngIf="form.get('description')?.touched">
+                            <!-- <ng-container *ngIf="form.get('description')?.touched">
                                 <div class="alert alert-danger" *ngIf="form.get('description')?.errors?.['required']">
                                     Description is required!
                                 </div>
-                            </ng-container>
+                            </ng-container> -->
                      
                           
                             <div class="form-group">
                                 <label for="Status">Status</label>
-                                <select class="form-control" formControlName="status">
-                                    <option value="1">To Do</option>
-                                    <option value="2">Doing</option>
-                                    <option value="3">Done</option>
+                                <select class="form-control" name="status" required  ngDefaultControl ngModel>
+                                    <option value="1" >To Do</option>
+                                    <option value="2" >Doing</option>
+                                    <option value="3" >Done</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -52,7 +53,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <button type="submit" class="btn btn-success btn-user btn-block my-4"
-                                      (click)="editTask()"  >Save changes</button>
+                                       >Save changes</button>
                                 </div>
                                 <div class="col-6">
                                     <button class="btn btn-outline-danger btn-user btn-block my-4"
