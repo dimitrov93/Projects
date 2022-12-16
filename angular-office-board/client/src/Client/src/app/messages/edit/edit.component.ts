@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message, User } from 'src/app/shared/interfaces';
+import { TaskService } from 'src/app/tasks/task.service';
 import { MsgService } from '../messages.service';
 
 
@@ -22,6 +23,7 @@ export class EditComponent implements OnInit {
     private msgService: MsgService,
     private router: Router,
     private route: ActivatedRoute,
+    private taskService: TaskService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,10 @@ export class EditComponent implements OnInit {
       this.oldMsg = res;
     })
     
+    this.taskService.getTaskDetails(this.params).subscribe(res => {
+      console.log(res);
+      
+    })
   }
 
   handleUpdate(form: NgForm) {

@@ -19,6 +19,7 @@ export class CommentCreateComponent implements OnInit {
   userName = JSON.parse(this.user as any).user;
   msgForm!: FormGroup;
   currentDate = new Date();
+  randNumber = Math.round(Math.random() * 100000000);
 
 
   constructor(
@@ -46,9 +47,15 @@ export class CommentCreateComponent implements OnInit {
   createComments() {    
     
     this.taskService
-      .createComment(this.params, { userName: this.userName, content: this.msgForm.value.content, date: this.currentDate, userId: this.userId })
+      .createComment(this.params, { userName: this.userName, content: this.msgForm.value.content, date: this.currentDate, userId: this.userId, _id: this.randNumber })
       .subscribe((res) => {
         this.router.navigate([`/tasks/${this.params}`]);
       });
   }
+
+  return(id: string | number) {    
+    this.router.navigate([`tasks/${id}`]);
+  }
+
+
 }

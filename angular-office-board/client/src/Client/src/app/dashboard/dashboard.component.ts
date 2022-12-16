@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../tasks/task.service';
 import { MsgService } from '../messages/messages.service';
-import { AuthService } from 'src/app/auth/auth.service';
 import { Task, Message, Comment } from '../shared/interfaces';
 @Component({
   selector: 'app-dashboard',
@@ -17,9 +16,9 @@ export class DashboardComponent implements OnInit {
   monthMsg: Array<Message> = [];
   yearMsg: Array<Message> = [];
 
-  todayComments: Array<Task> = [];
-  monthComments: Array<Task> = [];
-  yearComments: Array<Task> = [];
+  todayComments: Array<any> = [];
+  monthComments: Array<any> = [];
+  yearComments: Array<any> = [];
 
   constructor(
     private taskService: TaskService,
@@ -29,20 +28,45 @@ export class DashboardComponent implements OnInit {
     this.fetchTasks();
   }
 
+
+  // res.filter(x => {
+        
+  //   x.comments.filter(y => {
+  //      console.log(y);
+
+  //      new Date(y.date).getFullYear() + 1 ==
+  //      new Date(Date.now()).getFullYear() + 1 &&
+  //    new Date(y.date).getDate() == new Date(Date.now()).getDate()
+  //    }
+  //    )
+     
+  //  }) 
+
+
+
+
   fetchTasks() {
     this.taskService.getAllTasks().subscribe((res) => {
-      let counter = 0;
-      res.filter(x => {
+
+      res.forEach(x => {
+        x.comments.forEach(y => {
+
+          if (new Date(y.date).getDate() == new Date(Date.now()).getDate()) {
+            this.todayComments.push('')
+          }
         
-        x.comments.filter(y => {
-          new Date(y.date).getFullYear() + 1 ==
-          new Date(Date.now()).getFullYear() + 1 &&
-        new Date(y.date).getDate() == new Date(Date.now()).getDate()
-        counter++
-        }
-        )
-        
-      })      
+          if (new Date(y.date).getMonth() == new Date(Date.now()).getMonth()) {
+            this.monthComments.push('')
+          }
+
+          if (new Date(y.date).getFullYear() +1 == new Date(Date.now()).getFullYear() +1) {
+            this.yearComments.push('')
+          }
+          
+        })
+      })
+   
+ 
       
       this.todayTasks = res.filter(
         (x) =>

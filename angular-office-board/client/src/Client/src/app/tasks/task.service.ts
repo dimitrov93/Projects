@@ -43,8 +43,8 @@ export class TaskService {
     return this.http.post<Comment>(this.tasksPath + `/comments/${id}/edit`, {id: id, data: data});
   }
 
-  // getCommentDetails(id: number): Observable<Comment> {
-  //   return this.http.get<Comment>(this.tasksPath + `/${id}`);
-  // }
+  getCommentDetails(id: number | string): Observable<any> {
+    return this.http.get<Comment>(this.tasksPath + `/comment/${id}/edit`);
+  }
 
 }

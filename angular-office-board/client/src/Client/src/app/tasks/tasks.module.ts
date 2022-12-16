@@ -9,6 +9,7 @@ import { EditComponent } from './edit/edit.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentCreateComponent } from './comment-create/comment-create.component';
 import { DragDropModule} from '@angular/cdk/drag-drop';
+import { CommentEditComponent } from './comment-edit/comment-edit.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { DragDropModule} from '@angular/cdk/drag-drop';
     DetailsComponent,
     EditComponent,
     CommentCreateComponent,
+    CommentEditComponent,
   ],
   imports: [
     CommonModule,

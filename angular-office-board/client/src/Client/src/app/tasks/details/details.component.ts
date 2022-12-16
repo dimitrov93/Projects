@@ -41,10 +41,11 @@ export class DetailsComponent implements OnInit {
     this.route.params.subscribe((params) => {
       
       const id = params['id'];
+      
       localStorage.setItem('task', id);
       this.taskService.getTaskDetails(id).subscribe((res) => {    
                 
-        this.comments = res.comments
+        this.comments = res.comments        
         this.task = res;
       });
     });
@@ -69,6 +70,11 @@ export class DetailsComponent implements OnInit {
   }
 
   open() {
-    this.router.navigate([`tasks/comments/${this.params}/edit`]);
+    this.router.navigate([`tasks/comments/${this.params}/create`]);
+  }
+
+
+  editComment(commentId: string | undefined, id: string | undefined) {
+    this.router.navigate([`tasks/comment/${commentId}/${id}/edit`]);
   }
 }

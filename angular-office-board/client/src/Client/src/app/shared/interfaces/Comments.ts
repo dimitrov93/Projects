@@ -1,5 +1,5 @@
 export interface Comment {
-    id: number,
+    _id: string,
     content: string,
     taskId: number,
     taskTitle: string,

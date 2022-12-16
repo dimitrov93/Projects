@@ -11,6 +11,8 @@ export class SidebarComponent  {
   toggled = false;
 
   onToggle() {
+    console.log('toogle');
+    
     this.toggled = !this.toggled;
   }
 

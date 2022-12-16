@@ -68,14 +68,24 @@ router.put("/:id/edit", async (req, res) => {
 
 // Comments
 
-// router.get("/comments/:id/edit", async (req, res) => {
-//   try {
-//     let task = await taskService.addComment(req.params.id, req.body.data);
-//     res.status(200).json(task);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+router.get("/comment/:id/edit", async (req, res) => {
+  try {
+    let task = await taskService.getOneDetailed(req.params.id);
+    res.status(200).json(task);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
+router.get("/comment/:id", async (req, res) => {
+  try {
+    let task = await taskService.getOneDetailed(req.params.id);
+    res.status(200).json(task);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 

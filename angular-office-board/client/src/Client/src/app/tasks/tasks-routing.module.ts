@@ -29,9 +29,10 @@ const routes: Routes = [
   },
 
   {
-    path: 'comments/:id/edit',
+    path: 'comments/:id/create',
     component: CommentCreateComponent
   },
+
 
   
 
