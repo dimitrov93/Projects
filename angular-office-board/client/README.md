@@ -54,7 +54,7 @@ Web application for office communication:
 
 
 ## :eyes: Screenshots
-#### Dashboard
+#### :arrow_right: Dashboard
 ![OfficeBoard-MessagesBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
 #### Messages Board
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/msgBoard.png)
