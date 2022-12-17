@@ -62,3 +62,17 @@ Web application for office communication:
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/createMgs.png)
 #### Tasks Board
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/tasks.png)
+#### Tasks Edit
+![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/taskEdit.png)
+#### Task Details Non creator
+![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/taskDetailsNonCreator.png)
+#### Task Details Creator
+![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/taskDetailsCreator.png)
+#### Task Comment Create
+![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/createNewTask.png)
+#### Profile
+![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/profile.png)
+#### Edit Profile
+![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/profileEdit.png)
+#### 404
+![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/404.png)
