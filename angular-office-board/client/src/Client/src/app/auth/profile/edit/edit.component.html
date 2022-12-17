@@ -119,17 +119,16 @@
         </div>
         <div class="text-center row">
           <div class="col-6">
-            <button
-              type="submit"
-              class="btn btn-outline-success btn-user btn-block my-4"
-              title="Save Changes"
-            >
+            <button type="submit" class="btn btn-outline-success btn-user btn-block my-4" title="Save Changes">
               <i class="fa-solid fa-floppy-disk"></i> Save Changes
             </button>
           </div>
           <div class="col-6">
-            <button class="btn btn-outline-secondary btn-user btn-block my-4">
-              <i class="fa-solid fa-user"></i> View Profile
+            <button
+              class="btn btn-outline-danger btn-user btn-block my-4"
+              routerLink="/auth/profile"
+            >
+              Cancel
             </button>
           </div>
         </div>

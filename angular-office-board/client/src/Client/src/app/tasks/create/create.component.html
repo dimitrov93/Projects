@@ -14,18 +14,19 @@
                                 <label>Title</label>
                                 <input type="text" class="form-control" formControlName="title">
                             </div>
-                            <div *ngIf="title?.touched && title?.errors?.['required']" class="alert alert-danger">
-                                Title is required!
-                            </div>
+                            <ng-container *ngIf="taskForm.get('title')?.touched">
+                                <div class="alert alert-danger" *ngIf="taskForm.get('title')?.errors?.['required']">Title is required!</div>
+                              </ng-container>
+
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea type="text" class="form-control" formControlName="description"></textarea>
 
                             </div>
-                            <div *ngIf="description?.touched && description?.errors?.['required']"
-                                class="alert alert-danger">
-                                Description is required!
-                            </div>
+                            <ng-container *ngIf="taskForm.get('description')?.touched">
+                                <div class="alert alert-danger" *ngIf="taskForm.get('description')?.errors?.['required']">Description is required!</div>
+                              </ng-container>
+                              
                             <div class="row">
                                 <div class="col-6">
                                     <button type="submit"

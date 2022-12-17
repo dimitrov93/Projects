@@ -38,4 +38,9 @@ export class EditComponent implements OnInit {
     }
   }
 
+  viewProfile(form: NgForm){
+    console.log('here');
+    
+  }
+
 }
