@@ -56,23 +56,23 @@ Web application for office communication:
 ## :eyes: Screenshots
 #### :arrow_right: Dashboard
 ![OfficeBoard-MessagesBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
-#### Messages Board
+#### :arrow_right:  Messages Board
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/msgBoard.png)
-#### Messages Create
+#### :arrow_right:  Messages Create
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/createMgs.png)
-#### Tasks Board
+#### :arrow_right:  Tasks Board
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/tasks.png)
-#### Tasks Edit
+#### :arrow_right:  Tasks Edit
 ![OfficeBoard-TasksBoard-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/taskEdit.png)
-#### Task Details Non creator
+#### :arrow_right:  Task Details Non creator
 ![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/taskDetailsNonCreator.png)
-#### Task Details Creator
+#### :arrow_right:  Task Details Creator
 ![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/taskDetailsCreator.png)
-#### Task Comment Create
+#### :arrow_right:  Task Comment Create
 ![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/createNewTask.png)
-#### Profile
+#### :arrow_right:  Profile
 ![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/profile.png)
-#### Edit Profile
+#### :arrow_right:  Edit Profile
 ![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/profileEdit.png)
-#### 404
+#### :arrow_right:  404
 ![OfficeBoard-TaskDetailsWithComments-Screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/404.png)
