@@ -45,22 +45,22 @@ E-commerce web application build with React for training purposes.
 
 ## :eyes: Screenshots
 #### :arrow_right: HomePage
-![xoxo-Homepage-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-Homepage-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/homepage.png?raw=true)
 #### :arrow_right: Login
-![xoxo-Login-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-Login-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/login.png?raw=true)
 #### :arrow_right: Register
-![xoxo-Register-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-Register-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/register.png?raw=true)
 #### :arrow_right: User
-![xoxo-User-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-User-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/user.png?raw=true)
 #### :arrow_right: Catalog
-![xoxo-Catalo-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-Catalo-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/catalog.png?raw=true)
 #### :arrow_right: Logged-in-user
-![xoxo-logged-in-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-logged-in-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/loggedIn.png?raw=true)
 #### :arrow_right: Cart
-![xoxo-Cart-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-Cart-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/cart.png?raw=true)
 #### :arrow_right: Non-personal product
-![xoxo-noProduct-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-noProduct-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/nonPersonalProduct.png?raw=true)
 #### :arrow_right: Personal product
-![xoxo-personalProduct-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-personalProduct-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/personalProduct.png?raw=true)
 #### :arrow_right: No products in catalog
-![xoxo-personalProduct-screenshot](https://raw.githubusercontent.com/dimitrov93/OfficeBoard/main/screenshots/dashboard.png)
+![xoxo-personalProduct-screenshot](https://github.com/dimitrov93/xoxoStore/blob/main/screenshots/noProducts.png?raw=true)
