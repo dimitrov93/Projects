@@ -21,7 +21,7 @@ E-commerce web application build with React for training purposes.
 - You should be running the server in order to use the Client.
 - Run `npm install` in the `Client` directory.
 - Run `ng s` (in the `Client` directory) for a dev server. 
-- You should see OfficeBoard's client-side open in your browser on `http://localhost:3000/`.
+- You should see xoxoStore's client-side open in your browser on `http://localhost:3000/`.
 - You can also check the deployed version on `https://xoxostore-7ef9a.web.app/`.
 
 ## :information_source: Structure
