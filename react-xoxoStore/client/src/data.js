@@ -33,7 +33,7 @@ export const categories = [
     },
     {
         id: 2,
-        img: "https://img.pngio.com/pure-cotton-cute-little-bear-pajamas-pure-cotton-lovely-bear-girl-in-pajamas-png-650_785.png",
+        img: "https://yourcto.gumlet.io/wp-content/uploads/2020/12/14c16861ca5878b9.jpg?compress=true&quality=80&w=480&dpr=2.6",
         title: "Loungewear LOVE",
     },
     {

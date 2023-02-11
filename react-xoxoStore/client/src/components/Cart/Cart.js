@@ -231,7 +231,6 @@ const Cart = () => {
         </Bottom>
       </Wrapper>
 
-      <Footer />
     </Container>
   );
 };
