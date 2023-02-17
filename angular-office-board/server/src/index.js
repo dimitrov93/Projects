@@ -6,7 +6,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const {auth} = require('./middlewares/authMiddleware');
 
-const cors = require('./middlewares/corseMiddleware');
+const cors = require('cors');
 
 const userRoute = require('./routes/user');
 const authRoute = require('./routes/auth');
@@ -18,7 +18,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use(cors())
+app.use(cors(({origin: ["https://office-board.web.app", "http://localhost:3000", "http://localhost:4200"], credentials: true})))
 app.use(express.json())
 app.use(cookieParser());
 app.use(auth)
