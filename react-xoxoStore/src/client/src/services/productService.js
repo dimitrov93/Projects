@@ -1,6 +1,6 @@
 import * as request from "./requester";
 
-const baseUrl = 'http://localhost:5000/api/products';
+const baseUrl = 'https://xoxostore.onrender.com/api/products';
 
 export const getAll = () => request.get(baseUrl);
 export const getAllFiltered = (cat) => request.get(`${baseUrl}?category=${cat}`);

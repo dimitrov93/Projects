@@ -1,6 +1,6 @@
 import * as request from "./requester";
 
-const baseUrl = 'http://localhost:5000/api/email';
+const baseUrl = 'https://xoxostore.onrender.com/api/email';
 
 export const emailPost = (email) => 
     request.post(`${baseUrl}`, { email });
