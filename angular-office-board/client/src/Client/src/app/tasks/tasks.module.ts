@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentCreateComponent } from './comment-create/comment-create.component';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { CommentEditComponent } from './comment-edit/comment-edit.component';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,6 @@ import { CommentEditComponent } from './comment-edit/comment-edit.component';
     NgbModule,
     FormsModule,
     DragDropModule,
-  ]
+  ],
 })
 export class TasksModule { }
