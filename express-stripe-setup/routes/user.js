@@ -44,7 +44,6 @@ router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
 router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    console.log(user);
     const { password, ...others } = user._doc;
     res.status(200).json(others);
   } catch (err) {
@@ -57,7 +56,7 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new;
   try {
     const users = query
-      ? await User.find().sort({ _id: -1 }).limit(5)
+      ? await User.find().sort({ _id: -1 }).limit(1) // latest user
       : await User.find();
     res.status(200).json(users);
   } catch (err) {
@@ -65,5 +64,23 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
+// GET USER STATS
+
+router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
+    const date = new Date();
+    const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
+  
+    console.log(lastYear);
+    try {
+      const data = await User.aggregate([
+        { $match: { createdAt: { $gte: lastYear } } }, // greater than last year
+        { $project: {month: { $month: "$createdAt" },},}, // calculates months
+        { $group: { _id: "$month", total: { $sum: 1 },},}, // sum per months
+      ]);
+      res.status(200).json(data)
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 module.exports = router;
