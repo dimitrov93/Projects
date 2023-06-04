@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-ecommerce",
+  "version": "1.0.0",
+  "description": "nodejs project for e-commerce app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimitrov93/nodejs-ecommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dimitrov93/nodejs-ecommerce/issues"
+  },
+  "homepage": "https://github.com/dimitrov93/nodejs-ecommerce#readme",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.1.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.2",
+    "nodemon": "^2.0.22"
+  }
+}
