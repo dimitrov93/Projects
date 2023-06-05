@@ -70,7 +70,6 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     const date = new Date();
     const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
   
-    console.log(lastYear);
     try {
       const data = await User.aggregate([
         { $match: { createdAt: { $gte: lastYear } } }, // greater than last year
@@ -83,4 +82,6 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     }
   });
 
+
 module.exports = router;
+
