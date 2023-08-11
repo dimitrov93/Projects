@@ -1,0 +1,49 @@
+.about {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+
+  .about__img {
+    width: 40%;
+    aspect-ratio: 1/1;
+    background-image: url("../Assets/me.png");
+    background-size: cover;
+    background-position: center;
+    border: 1px solid var(--clr-blue);
+    border-radius: 10%;
+    box-shadow: 0 5px 10px rgb(0, 0, 0, 0.2);
+    transition: var(--trans);
+
+  }
+
+  .about__img:hover {
+    transform: rotate(5deg);
+    background-image: url("../Assets/me2.jpg");
+  }
+
+  .about__content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  h3,h4 {
+    color: var(--clr-teal);
+
+  }
+  
+  p {
+      font-size: 1.2rem;
+      color: var(--clr-ligter-teal);
+  }
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
