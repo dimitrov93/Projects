@@ -1,0 +1,64 @@
+.home__img {
+  width: 100%;
+  height: 500px;
+  background-image: url("../../Assets/bike.jpg");
+  background-size: cover;
+  background-position: center;
+
+  h1 {
+    color: var(--clr-deep-blue);
+    text-align: center;
+  }
+}
+.banner {
+  .banner__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .banner__content p {
+    font-size: 2rem;
+    color: var(--clr-deep-blue);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .home__img {
+    h1 {
+      font-size: 4rem;
+    }
+  }
+  .banner {
+    .banner__content p {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+    .home__img {
+        h1 {
+          font-size: 3rem;
+        }
+      }
+      .banner {
+        .banner__content p {
+          font-size: 1.2rem;
+        }
+      }
+}
+
+@media screen and (max-width: 600px) {
+    .home__img {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+      .banner {
+        .banner__content p {
+          font-size: 0.9rem;
+        }
+      }
+}

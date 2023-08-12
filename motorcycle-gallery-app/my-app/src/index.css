@@ -1,10 +1,8 @@
 :root {
 
   --clr-blue: #98B4D4;
+  --clr-deep-blue: #003366;
   --clr-ligter-blue: #A8C5E1;
-
-  --clr-teal: #003366;
-  --clr-ligter-teal:#66CCFF;
 
   --container-width-lg: 75%;
   --container-width-md: 86%;

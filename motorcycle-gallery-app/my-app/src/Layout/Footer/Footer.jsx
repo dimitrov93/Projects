@@ -1,9 +1,8 @@
 import React from "react";
 import "./footer.scss";
-import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Menu from "../Components/Menu";
-
+import Menu from "../../Components/Menu/Menu";
 
 const Footer = () => {
   return (
@@ -11,14 +10,20 @@ const Footer = () => {
       <Menu />
 
       <div className="footer__socials">
-        <Link to="https://facebook.com">
+        <Link
+          to={"https://www.facebook.com/dimitrovtsvetomir/"}
+          target="_blank"
+        >
           <FaFacebookF />{" "}
         </Link>
-        <Link to="https://instagram.com">
-          <FaInstagram />
-        </Link>
-        <Link to="https://linkedin.com">
+        <Link
+          to={"https://www.linkedin.com/in/tsvetomir-dimitrov-921678238/"}
+          target="_blank"
+        >
           <FaLinkedinIn />
+        </Link>
+        <Link to={"https://github.com/dimitrov93"} target="_blank">
+          <FaGithub />
         </Link>
       </div>
 

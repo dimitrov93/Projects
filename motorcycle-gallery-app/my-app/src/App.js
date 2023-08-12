@@ -1,22 +1,22 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import ContactUs from "./Pages/ContactUs";
-import Footer from "./Layout/Footer";
-import Header from "./Layout/Header";
-import About from "./Pages/About";
-import Gallery from "./Pages/Gallery";
-import Login from "./Pages/Login";
+import Home from "./Pages/Home/Home";
+import Contact from "./Pages/Contacts/Contacts";
+import Header from "./Layout/Header/Header";
+import Gallery from "./Pages/Gallery/Gallery";
+import Login from "./Pages/Auth/Login/Login";
 
 import { AuthProvider } from "./context/AuthContext";
-import Logout from "./Pages/Logout";
+import Logout from "./Pages/Auth/Logout/Logout";
 import TitleUpdater from "./Components/TitleUpdater";
+import Footer from "./Layout/Footer/Footer";
+import About from "./Pages/About/About";
 
 function App() {
   const galleryItems = [
     {
       title: "Yamaha",
       imageSrc:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VV0JiawA0Nm9TGeghZj9sBSzrmHUzzH0G8MHOJOt&s",
+        "https://media.zigcdn.com/media/model/2022/Jun/yamaha-yzf-r15s-right-side-view_360x240.jpg",
       description:
         "Yamaha bikes are known for their performance and reliability. They offer a wide range of models suitable for various riding styles.",
     },
@@ -64,7 +64,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home galleryItems={galleryItems} />}></Route>
 
-        <Route path="/contacts" element={<ContactUs />}></Route>
+        <Route path="/contacts" element={<Contact />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/logout" element={<Logout />}></Route>

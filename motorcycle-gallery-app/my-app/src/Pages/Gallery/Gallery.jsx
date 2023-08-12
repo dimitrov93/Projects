@@ -1,12 +1,13 @@
 import React from "react";
-import BoxGallery from "../Components/BoxGallery";
+import './gallery.scss'
+import BoxGallery from "../../Components/BoxGallery/BoxGallery";
 
 const Gallery = ({ galleryItems }) => {
 
   return (
-    <div className="container gallery-page">
+    <div className="container gallery__page">
       <h2>Gallery Page</h2>
-      <div className="gallery-container">
+      <div className="gallery__container">
         {galleryItems.map((item, index) => (
           <BoxGallery key={index} title={item.title} imageSrc={item.imageSrc} description={item.description} />
         ))}
