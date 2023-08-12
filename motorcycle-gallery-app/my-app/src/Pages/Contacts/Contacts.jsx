@@ -20,7 +20,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="container max_height">
+    <div className="container contacts">
       <div>
         <h1 className="contacts__header">You can reach me out to me:</h1>
       </div>

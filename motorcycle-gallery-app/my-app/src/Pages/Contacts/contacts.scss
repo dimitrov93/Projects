@@ -1,10 +1,11 @@
-.max_height {
+.contacts {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .contacts__header {
     color: var(--clr-blue);
+    text-align: center;
   }
 }
 .contacts__container {
@@ -31,6 +32,7 @@
     justify-content: center;
     gap: 2rem;
     color: var(--clr-deep-blue);
+    
   }
 
   .contacts__information {
