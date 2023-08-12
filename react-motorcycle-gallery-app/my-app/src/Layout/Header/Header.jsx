@@ -4,8 +4,11 @@ import "./header.scss";
 import { Link } from "react-router-dom";
 import { RxDropdownMenu } from "react-icons/rx";
 import Menu from "../../Components/Menu/Menu";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Header = () => {
+  const { user } = useAuthContext();
+
   return (
     <nav>
       <Link to={"/"}>
@@ -20,6 +23,11 @@ const Header = () => {
           <Link to="/about">About</Link>
           <Link to="/gallery">Gallery</Link>
           <Link to="/contacts">Contacts</Link>
+          {!user.email ? (
+            <Link to={"/login"}>Login</Link>
+          ) : (
+            <Link to={"/logout"}>Logout</Link>
+          )}
         </div>
       </div>
 

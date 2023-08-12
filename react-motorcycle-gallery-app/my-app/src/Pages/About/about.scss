@@ -35,11 +35,15 @@
   h3,
   h4 {
     color: var(--clr-deep-blue);
+    text-align: center;
+
   }
 
   p {
     font-size: 1.2rem;
     color: var(--clr-ligter-blue);
+    text-align: center;
+
   }
 }
 @media screen and (max-width: 1440px) {

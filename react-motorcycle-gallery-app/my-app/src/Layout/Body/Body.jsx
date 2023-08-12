@@ -5,7 +5,7 @@ import './body.scss'
 const Body = () => {
   return (
     <>
-      <div className="home__img">
+      <div className="body__img">
         <h1>Welcome to my website</h1>
       </div>
       <div className="banner">
