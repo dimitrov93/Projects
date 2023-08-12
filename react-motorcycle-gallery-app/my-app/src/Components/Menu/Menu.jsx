@@ -1,7 +1,7 @@
 import React from "react";
 import "./menu.scss";
 import { Link } from "react-router-dom";
-import { useAuthContext } from "../context/AuthContext";
+import { useAuthContext } from "../../context/AuthContext";
 
 const Menu = () => {
   const { user } = useAuthContext();
@@ -17,19 +17,18 @@ const Menu = () => {
       <li>
         <Link to="/gallery">Gallery</Link>
       </li>
+      <li>
+        <Link to={"/contacts"}>Contacts</Link>
+      </li>
       {!user.email ? (
         <li>
           <Link to={"/login"}>Login</Link>
         </li>
       ) : (
         <li>
-          <Link to={"/logout"}>LogOut</Link>
+          <Link to={"/logout"}>Logout</Link>
         </li>
       )}
-
-      <li>
-        <Link to={"/contacts"}>Contacts</Link>
-      </li>
     </ul>
   );
 };

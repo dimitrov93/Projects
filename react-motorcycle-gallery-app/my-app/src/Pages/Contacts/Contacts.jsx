@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import "./contactus.scss";
-import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import "./contacts.scss";
+import { FaFacebookF, FaLinkedin, FaGithub } from "react-icons/fa";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsPhone } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import Button from "../../Components/Button/Button";
 
 const ContactUs = () => {
-
   const [text, setText] = useState(" ");
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,19 +30,29 @@ const ContactUs = () => {
         <div className="contacts__information">
           <p className="contacts__information_item">
             <BsPhone className="contacts__icons" />
-            <span>Phone</span> +359 884 334 998{" "}
+            <span>Phone</span>
+            <span>+359 884 334 998</span>
           </p>
           <p className="contacts__information_item">
-            <AiOutlineMail className="contacts__icons" /> <span>Email</span>{" "}
-            ts.dimitrov93@gmail.com{" "}
+            <AiOutlineMail className="contacts__icons" /> <span>Email</span>
+            <span> ts.dimitrov93@gmail.com</span>
           </p>
           <p className="contacts__information_item">
             Social media:
-            <Link to={"https://www.facebook.com"}>
-              Facebook: <FaFacebookF color="#3b5998" />{" "}
+            <Link
+              to={"https://www.facebook.com/dimitrovtsvetomir/"}
+              target="_blank"
+            >
+              Facebook: <FaFacebookF color="#3b5998" />
             </Link>
-            <Link to={"https://instagram.com"}>
-              Instagram: <FaInstagram className="instagram" />
+            <Link
+              to={"https://www.linkedin.com/in/tsvetomir-dimitrov-921678238/"}
+              target="_blank"
+            >
+              LinkedIn: <FaLinkedin color="#0077B5" />
+            </Link>
+            <Link to={"https://github.com/dimitrov93"} target="_blank">
+              GitHub: <FaGithub color="#181717" />
             </Link>
           </p>
         </div>
@@ -54,24 +63,14 @@ const ContactUs = () => {
           <p>You can send me an email directly here:</p>
 
           <form onSubmit={handleSubmit}>
-            <div className="email__input">
-              <input
-                type="text"
-                placeholder="Name:"
-                name="name"
-                required
-              />
+            <div>
+              <input type="text" placeholder="Name:" name="name" required />
             </div>
-            <div className="email__input">
-              <input
-                type="email"
-                placeholder="Email:"
-                name="email"
-                required
-              />
+            <div>
+              <input type="email" placeholder="Email:" name="email" required />
             </div>
 
-            <div className="email__input">
+            <div>
               <textarea
                 rows="7"
                 type="text"
@@ -81,9 +80,8 @@ const ContactUs = () => {
               ></textarea>
             </div>
             {text && <p className="text_handler">{text}</p>}
-            <button type="submit" className="email__btn">
-              Send now
-            </button>
+
+            <Button text="Send now" />
           </form>
         </div>
       </div>

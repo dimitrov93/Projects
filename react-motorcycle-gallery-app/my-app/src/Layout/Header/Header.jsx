@@ -1,9 +1,9 @@
 import React from "react";
-import logo from "../Assets/logo.png";
+import logo from "../../Assets/logo.png";
 import "./header.scss";
 import { Link } from "react-router-dom";
 import { RxDropdownMenu } from "react-icons/rx";
-import Menu from "../Components/Menu";
+import Menu from "../../Components/Menu/Menu";
 
 const Header = () => {
   return (

@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Motorcycle Gallery Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Motorcycle Gallery Website! This is a simple website built using React that showcases motorcycles and allows users to explore different sections and functionalities.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Navigation](#navigation)
+- [Home Page](#home-page)
+- [About Page](#about-page)
+- [Gallery](#gallery)
+- [Contacts](#contacts)
+- [Login Page](#login-page)
+- [Footer](#footer)
 
-### `npm start`
+## Navigation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The navigation section includes a personal logo and menu buttons that provide easy access to various sections of the website:
+- Home
+- About
+- Gallery
+- Contacts
+- Login/Logout
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Home Page
 
-### `npm test`
+The home page features:
+- A captivating banner with an eye-catching picture that captures the essence of motorcycles.
+- A button that leads users to the Gallery section, where they can explore a collection of motorcycle images.
+- A small preview from the Gallery section, giving users a glimpse of what they can expect.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## About Page
 
-### `npm run build`
+The About page provides a deeper insight into the my identity:
+- Personal information, detailing who am I and my background.
+- Mission statement, sharing my aspirations and goals for the website.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Gallery
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Gallery section showcases a selection of motorcycle images:
+- Six cards, each featuring a motorcycle image along with basic information about the motorcycle model.
+- Users can explore the different motorcycles and learn more about them.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Contacts
 
-### `npm run eject`
+The Contacts section offers ways to get in touch with me:
+- A contact card with an image, phone number, email address, and links to social media profiles.
+- Users can reach out through email or connect via social media.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Login Page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The Login page provides a basic login form for users to access certain features:
+- Users can enter their email and password to log into the website.
+- (Note: This is a simple form for demonstration purposes, and any email/password combination can be used.)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Footer
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The footer section appears at the bottom of every page and includes:
+- Menu buttons for easy navigation to Home, About, Gallery, Contacts, and Login/Logout.
+- Links to social media profiles, allowing users to connect on various platforms.
+- A "Rights Reserved" notice, indicating the ownership of content.
 
-## Learn More
+Feel free to explore the various sections of the website and enjoy the collection of motorcycle images!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project was created with love by Tsvetomir. Feel free to reach out at [ts.dimitrov93@gmail.com] for any questions or feedback.
