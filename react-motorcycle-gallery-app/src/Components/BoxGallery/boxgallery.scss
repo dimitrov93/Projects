@@ -1,0 +1,25 @@
+.card {
+  box-shadow: 0 5px 10px rgb(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  border-radius: 10px;
+
+
+  h3 {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+    color: var(--clr-blue);
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 100;
+    margin-top: 0.5rem;
+    color: var(--clr-deep-blue);
+  }
+}
+
+.card:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
