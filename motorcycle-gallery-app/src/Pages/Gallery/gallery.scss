@@ -1,0 +1,30 @@
+.gallery__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+
+}
+
+.gallery__page {
+  h2 {
+    display: flex;
+    justify-content: center;
+    color: var(--clr-blue);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .gallery__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .gallery__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+}
