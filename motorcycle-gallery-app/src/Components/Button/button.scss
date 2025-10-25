@@ -1,0 +1,18 @@
+.primary__btn {
+    width: 100%;
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+    padding: 0.5rem 1.5rem;
+    text-align: center;
+    border-radius: 6px;
+    border: none;
+    background: var(--clr-ligter-blue);
+    cursor: pointer;
+    transition: var(--trans);
+    margin-top: 10px;
+  }
+
+  .primary__btn:hover {
+    background: var(--clr-blue);
+  }
