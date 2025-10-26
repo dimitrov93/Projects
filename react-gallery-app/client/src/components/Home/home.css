@@ -1,0 +1,14 @@
+.album {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+}
+
+.album__section {
+    width: 250px;
+}
+
+.album img {
+    width: 250px;
+    aspect-ratio: 1/1;
+}
