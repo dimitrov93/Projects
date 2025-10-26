@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Space Invaders</title>
+</head>
+<body>
+    <h1>Space Invaders</h1>
+    <main>
+        
+        
+        <nav class="nav">
+            <div class="score">
+                <h1>Score: <span id="score">0</span></h1>
+            </div>
+            
+            <div class="lives" >
+                <h1>Lives: <span class="livesCount" id="livesId"></span></h1>
+                <h1>Enemy: <span class="enemyLivesCount" id="livesEnemyId"></span></h1>
+            </div>
+        </nav>
+        
+        <!-- <div class="box">
+            
+        </div> -->
+        <img src="./assets/spriteSheet.jpg" alt="" id="firstSprite">
+        <img src="./assets/spriteSheet.jpg" alt="" id="bullet">
+
+        <img src="./assets/spriteSheet.jpg" alt="" id="secondSprite">
+        <img src="./assets/spriteSheet.jpg" alt="" id="enemyBullet">
+
+        <div class="front_enemies">
+            <div class="first_line_enemies"></div>
+            <div class="second_line_enemies"></div>
+        </div>
+
+        <div class="lostGame">
+            <h1>YOU LOSE!</h1>
+        </div>
+
+        <div class="winGame">
+            <h1>YOU WIN!</h1>
+        </div>
+    
+    </main>
+    
+    <script src="./src/index.js"></script>
+
+</body>
+</html>
