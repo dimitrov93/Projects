@@ -1,0 +1,98 @@
+<div class="container-fluid mt-4">
+  <div class="card o-hidden border-0 shadow-lg">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900">Edit Message</h1>
+              <p class="mb-4">
+                <small
+                  >Created On:
+                  <strong>{{
+                    oldMsg?.createdAt | date : "dd.MM.yyyy"
+                  }}</strong></small
+                >
+              </p>
+            </div>
+            <form
+              #editForm="ngForm"
+              (ngSubmit)="handleUpdate(editForm)"
+              name="editForm"
+              *ngIf="oldMsg"
+            >
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input
+                  class="form-control"
+                  name="title"
+                  type="text"
+                  required
+                  [(ngModel)]="oldMsg.title"
+                  ngDefaultControl
+                  ngModel
+                  #titleInput="ngModel"
+                />
+              </div>
+              <ng-container *ngIf="titleInput.errors?.['required']">
+                <div class="alert alert-danger">Title is required!</div>
+              </ng-container>
+
+              <!-- <ng-container *ngIf="form.get('title')?.touched">
+                <div
+                  class="alert alert-danger"
+                  *ngIf="form.get('title')?.errors?.['required']"
+                >
+                  Title is required!
+                </div>
+              </ng-container> -->
+
+              <div class="form-group">
+                <div>
+                  <label for="content">Content</label>
+                </div>
+                <textarea
+                required
+                name="content"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="oldMsg.content"
+                  ngDefaultControl
+                  ngModel
+                  #descriptionInput="ngModel"
+                ></textarea>
+              </div>
+
+              <ng-container *ngIf="descriptionInput.errors?.['required']">
+                <div class="alert alert-danger">Title is required!</div>
+              </ng-container>
+
+              <div class="form-group">
+                <input hidden type="number" class="form-control" />
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-user btn-block my-4"
+                  >
+                    Save changes
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="btn btn-outline-danger btn-user btn-block my-4"
+                    routerLink="/messages"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

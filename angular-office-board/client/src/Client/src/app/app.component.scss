@@ -1,0 +1,52 @@
+.header_dashboard {
+    font-size: 32px;
+    color: blue;
+
+}
+
+
+.sidenav {
+    height: 100%;
+    width: 15%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #3158c9;
+    z-index: 100;
+    font-weight: 100;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sidenav div {
+    margin-top: 20px;
+}
+
+.sidenav a {
+    text-decoration: none;
+    color: white;    
+}
+  
+.faLink {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    padding: 0 10px;
+    font-size: 24px;
+}
+
+.officeBoardLogo {
+    margin-top: 40px;
+}
+
+.divider {
+    width: 80%;
+    height: 1px;
+    color: white;
+    background-color: white;
+    padding: 0 10px;
+    align-self: center;
+}
