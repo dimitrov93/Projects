@@ -1,0 +1,38 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+nav img {
+    width: 100px;
+    aspect-ratio: 1/1;
+}
+
+.nav__buttons {
+    align-self: center;
+}
+
+.nav__buttons ul {
+    display: flex;
+}
+
+.nav__buttons ul li {
+    font-size: 24px;
+    padding: 1rem;
+
+}
+
+.nav__buttons ul li:Hover {
+    color: RGB(152, 180, 212);
+}
+
+.reg__btn,
+.logout__btn {
+    border-left: 1px solid black;
+}
+
+.logout__btn {
+    padding: 1rem;
+    margin-left: 1rem;
+}
