@@ -1,0 +1,16 @@
+:root {
+    --clr-background: black;
+}
+
+body {
+    margin: 0;
+    background-color: var(--clr-background);
+    padding: 10px 20px;
+}
+
+#score {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    word-spacing: 10px;
+    color: white;
+}
