@@ -1,0 +1,59 @@
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between m-4">
+        <h1 class="h3 mb-0 text-primary"><strong>User Info</strong></h1>
+    </div>
+</nav>
+<!-- End of Topbar -->
+<!-- Begin Page Content -->
+<div class="container-fluid mt-4">
+    <div class="col-xl-6 col-md-6 mb-4 ml-4">
+        <div class="card border-left-secondary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">User Info</div>
+                        <div class="h5 my-3 font-weight-bold text-gray-800">{{profile?.username}}</div>
+                        <div class="userDetails">
+                            <p class="text-sm">
+                                Username: <strong>{{profile?.username}}</strong><br>
+                                Email: <strong>{{profile?.email}}</strong><br>
+                                Position: <strong>{{profile?.position}}</strong><br>
+                                Department: <strong>{{profile?.department}}</strong><br>
+                                Tasks: <strong>{{myTasks.length}}</strong><br>
+                                Messages: <strong>{{myMsgs.length}}</strong>
+                            </p>
+                            <p>
+                                Tasks: <strong *ngFor="let task of myTasks; let i=index">
+                                    <br>
+
+                                    <a routerLink="/tasks/{{task._id}}" >{{task.title}}{{i === myTasks.length - 1 ? '' : ", "}}</a>
+                                    
+                                </strong>
+                            </p>
+
+                            <p>
+                                Messages: <strong *ngFor="let msg of myMsgs; let i=index">
+                                    <br>
+                                    {{msg.title}}{{i === myMsgs.length - 1 ? '' : ", "}}
+                                </strong>
+                            </p>
+                        </div>
+
+                        <!-- Circle Buttons (Small) -->
+                        <div>
+                            <a routerLink="/auth/profile/edit" class="btn btn-outline-warning btn-circle ml-4 mb-2"
+                                title="Edit">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- <div class="col-auto">
+                        <i class="fa-solid fa-user-tag"></i>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

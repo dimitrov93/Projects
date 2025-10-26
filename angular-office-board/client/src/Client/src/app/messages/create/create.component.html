@@ -1,0 +1,70 @@
+<!-- Begin Page Content -->
+<div class="container-fluid mt-4">
+  <div class="card o-hidden border-0 shadow-lg">
+    <div class="card-body p-0">
+      <!-- Nested Row within Card Body -->
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="p-5">
+            <div class="text-center">
+              <h1 class="h4 text-gray-900 mb-4">Create New Message</h1>
+            </div>
+            <form
+              class="user"
+              method="post"
+              [formGroup]="msgForm"
+              (ngSubmit)="create()"
+            >
+              <div class="form-group">
+                <label>Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="title"
+                />
+              </div>
+              <ng-container *ngIf="msgForm.get('title')?.touched">
+                <div
+                  class="alert alert-danger"
+                  *ngIf="msgForm.get('title')?.errors?.['required']"
+                >
+                  Title is required!
+                </div>
+              </ng-container>
+
+              <div class="form-group">
+                <label>Content</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  formControlName="content"
+                ></textarea>
+              </div>
+              <ng-container *ngIf="msgForm.get('content')?.touched">
+                <div class="alert alert-danger" *ngIf="msgForm.get('content')?.errors?.['required']">Content is required!</div>
+              </ng-container>
+              <div class="row">
+                <div class="col-6">
+                  <button
+                    type="submit"
+                    class="btn btn-success btn-user btn-block my-4"
+                  >
+                    Create
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button
+                    class="btn btn-outline-danger btn-user btn-block my-4"
+                    routerLink="/messages"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

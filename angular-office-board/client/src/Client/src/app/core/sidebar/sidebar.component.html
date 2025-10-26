@@ -1,0 +1,131 @@
+    <!-- Sidebar -->
+
+    <ul
+      class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+      id="accordionSidebar"
+    >
+      <!-- Sidebar - Brand -->
+      <a
+        class="sidebar-brand d-flex align-items-center justify-content-center"
+        routerLink="/"
+      >
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fa-solid fa-face-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3"><sup>Office </sup>Board</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0" />
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item" routerLink="/">
+        <a class="nav-link">
+          <i class="fa-solid fa-gauge"></i>
+          <span> Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <div *ngIf="isAuthenticated()">
+        <!-- Heading -->
+        <div class="sidebar-heading">Messages</div>
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages">
+            <i class="fa-solid fa-stop"></i>
+            <span> Messages Board</span>
+          </a>
+        </li>
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/messages/create">
+            <i class="fa-regular fa-message"></i>
+            <span> Create Message</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Heading -->
+        <div class="sidebar-heading">Tasks</div>
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tasks">
+            <i class="fa-solid fa-list-check"></i>
+            <span> Tasks Board</span>
+          </a>
+        </li>
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tasks/create">
+            <i class="fa-solid fa-plus"></i>
+            <span> Create Task</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+
+        <!-- Heading -->
+        <div class="sidebar-heading">Account</div>
+
+        <!-- Nav Item -->
+        <li class="nav-item" routerLink="auth/profile">
+          <a class="nav-link">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span> Profile</span>
+          </a>
+        </li>
+
+        <!-- Nav Item -->
+        <li class="nav-item" (click)="confirmLogout()">
+          <a class="nav-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span> Logout</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+      </div>
+
+      <div *ngIf="!isAuthenticated()">
+        <!-- Nav Item -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <span> Login</span>
+          </a>
+        </li>
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="auth/register">
+            <i class="fa-solid fa-registered"></i>
+            <span> Register</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+      </div>
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <!-- <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle" (click)="onToggle()">
+          <i class="fa-sharp fa-solid fa-arrows-left-right-to-line"></i>
+          <i class="fa-regular fa-arrow-left-to-line" style="color: #d1d3e2"></i>
+          <span> </span>
+          <i class="fa-solid fa-arrow-right-to-line" style="color: #d1d3e2"></i>
+        </button>
+      </div> -->
+
+    </ul>
