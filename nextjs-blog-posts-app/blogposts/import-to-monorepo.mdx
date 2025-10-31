@@ -1,0 +1,294 @@
+---
+title: Import a Remote Repo into a Monorepo (with history)
+description: Beginner-friendly, line-by-line explanation of a bash script that rewrites and merges a remote repo’s history into your monorepo, stripping secrets on the way.
+date: 2025-10-28
+tags: [git, monorepo, tutorial, beginner]
+---
+
+> **TL;DR**: This guide walks through a bash script that imports history from one repo (or a subfolder) into a monorepo — safely — and opens a PR at the end. You’ll see the full script first, then a **line‑by‑line** explanation.
+
+## Prerequisites
+
+- Git installed (2.30+ recommended).
+- `git-filter-repo` installed (the modern replacement for `git filter-branch`).  
+  - Install via pip: `pip install git-filter-repo`  
+  - Or follow the official instructions from the Git project.
+- Access to your source repo and your monorepo on GitHub.
+- Basic terminal skills (cd, chmod).
+
+## Quick Start: How to run this file
+
+1. Save this script as `script.sh` (or use your filename).
+2. Make it executable:
+
+   ```bash
+   chmod +x script.sh
+   ```
+
+3. Edit the variables in the **EDIT THESE** section to match your repos.
+4. Run it:
+
+   ```bash
+   ./script.sh
+   ```
+
+If something fails, because we used `set -e`, the script exits early so you can fix the issue safely.
+
+## The full script (unchanged)
+
+```bash
+#!/bin/bash
+set -e
+
+# === EDIT THESE 2 LINES ===
+SRC_URL="https://github.com/dimitrov93/my-resume-nodejs.git"   # source repo to import
+FOLDER="server"                                  # folder name inside Projects/
+
+# === Usually no edits below ===
+MONO_REMOTE="https://github.com/dimitrov93/my-resume.git"       # target monorepo (remote)
+MONO_DIR="$HOME/desktop/my-resume"                              # local path to your Projects repo
+SUBDIR="$FOLDER"                                               # final path inside Projects repo
+STAMP="$(date +%Y%m%d%H%M%S)"
+IMPORT_BRANCH="import-${FOLDER}-history-${STAMP}"
+MERGE_BRANCH="merge-${FOLDER}-${STAMP}"
+
+echo "=== Prepare temp workspace ==="
+mkdir -p ~/temp-imports && cd ~/temp-imports
+rm -rf src.git
+
+echo "=== Clone source (bare): $SRC_URL ==="
+git clone --no-tags --bare "$SRC_URL" src.git
+cd src.git
+
+echo "=== Rewrite history under $SUBDIR ==="
+git filter-repo --to-subdirectory-filter "$SUBDIR"
+
+echo "=== Strip secrets (.env*) from entire history ==="
+# remove any .env / .env.* anywhere in the imported tree
+git filter-repo --path-glob '**/.env*' --invert-paths
+
+echo "=== Push rewritten history to monorepo as $IMPORT_BRANCH ==="
+git remote add monorepo "$MONO_REMOTE" 2>/dev/null || true
+git push -u monorepo HEAD:refs/heads/$IMPORT_BRANCH --force-with-lease
+
+echo "=== Ensure local Projects repo exists ==="
+if [ ! -d "$MONO_DIR/.git" ]; then
+  mkdir -p "$(dirname "$MONO_DIR")"
+  cd "$(dirname "$MONO_DIR")"
+  git clone "$MONO_REMOTE" "$(basename "$MONO_DIR")"
+fi
+
+echo "=== Merge into local monorepo ==="
+cd "$MONO_DIR"
+git fetch origin $IMPORT_BRANCH
+
+# detect default branch (master/main)
+DEFBR=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+
+git checkout "$DEFBR"
+git pull
+git checkout -b "$MERGE_BRANCH"
+git merge --allow-unrelated-histories "origin/$IMPORT_BRANCH" -m "Merge full $FOLDER history (path-rewritten to $SUBDIR; secrets stripped)"
+git push -u origin "$MERGE_BRANCH"
+
+echo "=== Done ==="
+echo "Open a PR in dimitrov93/Projects:  $MERGE_BRANCH  ->  $DEFBR"
+echo "After merging, verify with:"
+echo "  git -C "$MONO_DIR" log --oneline --graph --decorate --full-history -- "$SUBDIR" | head -n 20"
+```
+
+## Line‑by‑line explanation (for beginners)
+
+- `#!/bin/bash`
+
+  Shebang: run this file with **bash**.
+- `set -e`
+
+  Exit immediately if any command fails (safer scripts).
+- ``
+
+  Runs this command.
+- `# === EDIT THESE 2 LINES ===`
+
+  Section header: lines you typically customize.
+- `SRC_URL="https://github.com/dimitrov93/my-resume-nodejs.git"   # source repo to import`
+
+  URL of the **source Git repo** you want to import from.
+- `FOLDER="server"                                  # folder name inside Projects/`
+
+  The final folder name inside the monorepo where files will live.
+- ``
+
+  Runs this command.
+- `# === Usually no edits below ===`
+
+  Comment: information for humans; ignored by bash.
+- `MONO_REMOTE="https://github.com/dimitrov93/my-resume.git"       # target monorepo (remote)`
+
+  HTTPS URL of your **target monorepo** on GitHub.
+- `MONO_DIR="$HOME/desktop/my-resume"                              # local path to your Projects repo`
+
+  Local path where your **monorepo** is cloned.
+- `SUBDIR="$FOLDER"                                               # final path inside Projects repo`
+
+  Convenience variable pointing to the final target **subdirectory**.
+- `STAMP="$(date +%Y%m%d%H%M%S)"`
+
+  Timestamp used to generate **unique branch names**.
+- `IMPORT_BRANCH="import-${FOLDER}-history-${STAMP}"`
+
+  Name of the temporary branch that will hold the rewritten history.
+- `MERGE_BRANCH="merge-${FOLDER}-${STAMP}"`
+
+  Name of the branch used to merge the imported history into your monorepo.
+- ``
+
+  Runs this command.
+- `echo "=== Prepare temp workspace ==="`
+
+  Progress message printed to your terminal.
+- `mkdir -p ~/temp-imports && cd ~/temp-imports`
+
+  Create a temp folder for the operation and **cd** into it.
+- `rm -rf src.git`
+
+  Ensure any previous temp repo is removed.
+- ``
+
+  Runs this command.
+- `echo "=== Clone source (bare): $SRC_URL ==="`
+
+  Progress message printed to your terminal.
+- `git clone --no-tags --bare "$SRC_URL" src.git`
+
+  Clone the **remote** source repository as a bare repo.
+- `cd src.git`
+
+  Move into the temporary bare repo.
+- ``
+
+  Runs this command.
+- `echo "=== Rewrite history under $SUBDIR ==="`
+
+  Progress message printed to your terminal.
+- `git filter-repo --to-subdirectory-filter "$SUBDIR"`
+
+  Rewrite all files so they live under the specified subdirectory in history.
+- ``
+
+  Runs this command.
+- `echo "=== Strip secrets (.env*) from entire history ==="`
+
+  Progress message printed to your terminal.
+- `# remove any .env / .env.* anywhere in the imported tree`
+
+  Comment: information for humans; ignored by bash.
+- `git filter-repo --path-glob '**/.env*' --invert-paths`
+
+  Remove any **.env** files from the entire history (protect secrets).
+- ``
+
+  Runs this command.
+- `echo "=== Push rewritten history to monorepo as $IMPORT_BRANCH ==="`
+
+  Progress message printed to your terminal.
+- `git remote add monorepo "$MONO_REMOTE" 2>/dev/null || true`
+
+  Add your monorepo as a remote named **monorepo**.
+- `git push -u monorepo HEAD:refs/heads/$IMPORT_BRANCH --force-with-lease`
+
+  Push rewritten history to the monorepo as a new branch (safely force if needed).
+- ``
+
+  Runs this command.
+- `echo "=== Ensure local Projects repo exists ==="`
+
+  Progress message printed to your terminal.
+- `if [ ! -d "$MONO_DIR/.git" ]; then`
+
+  If you don’t have a local clone of the monorepo, clone it now.
+- `  mkdir -p "$(dirname "$MONO_DIR")"`
+
+  Create the parent directory for the local clone, if missing.
+- `  cd "$(dirname "$MONO_DIR")"`
+
+  Runs this command.
+- `  git clone "$MONO_REMOTE" "$(basename "$MONO_DIR")"`
+
+  Clone the monorepo locally into the requested folder.
+- `fi`
+
+  Runs this command.
+- ``
+
+  Runs this command.
+- `echo "=== Merge into local monorepo ==="`
+
+  Progress message printed to your terminal.
+- `cd "$MONO_DIR"`
+
+  Move into your local monorepo clone.
+- `git fetch origin $IMPORT_BRANCH`
+
+  Fetch the newly pushed **import branch** from GitHub.
+- ``
+
+  Runs this command.
+- `# detect default branch (master/main)`
+
+  Comment: information for humans; ignored by bash.
+- `DEFBR=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')`
+
+  Detect whether the default branch is **main** or **master**.
+- ``
+
+  Runs this command.
+- `git checkout "$DEFBR"`
+
+  Switch to the default branch in your monorepo.
+- `git pull`
+
+  Update your local default branch with the latest remote changes.
+- `git checkout -b "$MERGE_BRANCH"`
+
+  Create a **new branch** where you’ll perform the merge.
+- `git merge --allow-unrelated-histories "origin/$IMPORT_BRANCH" -m "Merge full $FOLDER history (path-rewritten to $SUBDIR; secrets stripped)"`
+
+  Merge the import branch into your monorepo (histories were previously unrelated).
+- `git push -u origin "$MERGE_BRANCH"`
+
+  Push your merge branch to GitHub so you can open a PR.
+- ``
+
+  Runs this command.
+- `echo "=== Done ==="`
+
+  Progress message printed to your terminal.
+- `echo "Open a PR in dimitrov93/Projects:  $MERGE_BRANCH  ->  $DEFBR"`
+
+  Progress message printed to your terminal.
+- `echo "After merging, verify with:"`
+
+  Progress message printed to your terminal.
+- `echo "  git -C "$MONO_DIR" log --oneline --graph --decorate --full-history -- "$SUBDIR" | head -n 20"`
+
+  Progress message printed to your terminal.
+
+---
+
+## What to do after the PR is merged
+
+- Delete the temporary **import** and **merge** branches if you don’t need them anymore.
+- Pull the default branch locally and verify the files exist at the right path.
+- Optionally tag the merge commit:
+
+  ```bash
+  git tag -a imported-import-a-remote-repo-into-a-monorepo-(with-history)-2025-10-28 -m "Imported Import a Remote Repo into a Monorepo (with history)"
+  git push --tags
+  ```
+
+## Common errors and fixes
+
+- **`git: 'filter-repo' is not a git command`** → Install `git-filter-repo` and ensure it’s on your PATH.
+- **Permission denied (publickey)** when pushing → Fix your SSH keys or use HTTPS with a token.
+- **Merge conflicts** → Open the files, resolve conflicts, `git add .`, and `git commit` on the merge branch, then push again.
